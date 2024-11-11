@@ -1,0 +1,324 @@
+<!--{template common/header}-->
+<!--{template mini_pet:style}-->
+<div id="pt" class="bm cl">
+    <div class="z">
+        <a href="./" class="nvhm" title="{lang homepage}">$_G[setting][bbname]</a><em>&raquo;</em>
+		<a href="{if $html == 1}{$mininame}.html{else}plugin.php?id=mini_pet{/if}">{$title}</a><em>&raquo;</em>
+		$mythread['title']
+    </div>
+</div>
+<div class="clear"></div>
+<div id="ct" class="wp cl ct2">
+    <!--left-->
+    <div class="mn bm cl" style="float:left;border-radius:3px;margin-bottom:5px;border:1px solid #e6e6e6;min-width:730px">
+        <div class="bm_c">
+            <!-- table-->
+            <div style="font-size:24px;font-family:'Microsoft YaHei',SimHei;font-weight:normal;  float:left;border-bottom:3px solid #e6e6e6;width:100%;">{$mythread['title']}<!--{if $mythread['zhuangtai']=="1"}--><span class="s-status_1">{lang mini_pet:xunzhaozhong}</span><!--{else}--><span class="s-status_3">{lang mini_pet:yizhaodao}</span><!--{/if}--><!--{if $_G[uid] == $mythread[uid]||$_G['groupid']=="1"||in_array($_G['uid'], $admins)}--><a href="plugin.php?id=mini_pet:mini_pet_user&p=edit&sid={$mythread[id]}" style="font-size:12px;color:red;">[{lang mini_pet:bianji}]</a><a href="plugin.php?id=mini_pet:mini_pet_user&p=del&sid={$mythread[id]}&formhash={FORMHASH}" onclick="return confirm('{lang mini_pet:quedingshanchu}')" style="font-size:12px;color:red;">[{lang mini_pet:shanchu}]</a><!--{/if}-->
+            </div>
+            <div style="float:left;margin:5px;">{lang mini_pet:viewxinxibianhao}{lang mini_pet:maohao}{$mythread['id']} &nbsp;&nbsp;{lang mini_pet:liulancishu}{lang mini_pet:maohao}{$mythread[view]}{lang mini_pet:ci}&nbsp;&nbsp;<a onclick="showWindow('favorites', 'plugin.php?id=mini_pet&mod=favorites&sid={$mythread[id]}&title={$mythread[title]}&formhash={FORMHASH}', 'get', 0)"    style="color:blue;cursor:pointer">[{lang mini_pet:shoucang}]</a>
+			</div>
+            <div style="float:right;margin:5px;">{echo date('Y-m-d',$mythread[updateline])}{lang mini_pet:listgengxin} <!--{if $_G[uid] == $mythread[uid]||$_G['groupid']=="1"||in_array($_G['uid'], $admins)}--><a onclick="showWindow('freshen', 'plugin.php?id=mini_pet&mod=freshen&sid={$mythread[id]}&formhash={FORMHASH}', 'get', 0)"  style="color:green;cursor:pointer">[{lang mini_pet:viewshuaxin}]</a><!--{if $creditc!="0" && $paytypec}--> <a onclick="showWindow('zhiding', 'plugin.php?id=mini_pet&mod=zhiding&sid={$mythread[id]}', 'get', 0)"style="color:green;">[{lang mini_pet:viewzhiding}]</a><!--{/if}--><!--{/if}-->
+			</div>
+            <div style="padding-top:15px;">
+                <table class="wrap_table">
+                    <tr>
+                        <th nowrap="nowrap">{lang mini_pet:cate}</th>
+                        <td class="s-w_240">
+							<!--{if !empty($mythread['petname'])}--> {$mythread['petname']}<!--{else}-->{$mythread['cate_s']}<!--{/if}-->
+                        </td>
+                        <th>
+                            {lang mini_pet:price}
+                        </th>
+                        <td class="s-w_240"style="color:#FF0000;font-weight:bold; font-size:16px;">                                                     
+							<!--{if $mythread['price'] >"0"}-->{$mythread['price']}{lang mini_pet:listyuan}<!--{elseif $mythread['price']=="0"}-->{lang mini_pet:mianchoujin}<!--{else}-->{lang mini_pet:mianyi}<!--{/if}-->
+                        </td>
+				        <td rowspan="4" style="width:150px">
+					        <img alt="{$mythread[title]}" title="{$mythread[title]}" src="{if !empty($mythread[pic])}{$mythread[pic]}{else}{$defaultpic}{/if}" style="margin-left:-12px;" onclick="zoom(this, '', 0)"/>
+			            </td>
+                    </tr>
+			        <tr>
+				        <th>
+					        <!--{if $mythread['hr'] == '1'}-->{lang mini_pet:diuchongweizhi}<!--{else}-->{lang mini_pet:shichongweizhi}<!--{/if}-->
+			            </th>
+			            <td  colspan="3">
+					        {$mythread['area_s']} {$mythread['address']}  
+				        </td>
+			        </tr>
+                    <tr>
+                        <th>{lang mini_pet:viewxingbie}</th>
+                        <td class="s-w_240">
+                             <!--{if $mythread['xingbie'] == '1'}-->{lang mini_pet:viewgong}<!--{elseif $mythread['xingbie'] == '2'}-->{lang mini_pet:viewmu}<!--{else}-->{lang mini_pet:viewbuqueding}<!--{/if}-->
+                        </td>
+                        <th>
+                             {lang mini_pet:viewnianling}
+                        </th>
+                        <td class="s-w_240">                                                      
+							 {$mythread['nianling']}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>{lang mini_pet:viewtizhong}</th>
+                        <td class="s-w_240">
+							 {$mythread['tizhong']}
+                        </td>
+                        <th>
+                             {lang mini_pet:viewshengao}
+                        </th>
+                        <td class="s-w_240">                                                      
+							 {$mythread['shengao']}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>{lang mini_pet:viewmaose}</th>
+                        <td>
+							 {$mythread['maose']}
+                        </td>
+                        <th>{lang mini_pet:viewxingge}</th>
+                        <td colspan="2">                                                      
+							 {$mythread['xingge']}
+                        </td>
+                    </tr>
+					<!--{if !empty($diysd[0])}-->
+                    <tr>
+                         <th>{$diysd[0]}</th>
+                         <td colspan="4">
+							  {$mythread['sd1']}
+                         </td>
+                    </tr>
+					<!--{/if}-->
+					<!--{if !empty($diysd[1])}-->
+                    <tr>
+                         <th>{$diysd[1]}</th>
+                         <td colspan="4">                                                      
+							  {$mythread['sd2']}
+                         </td>
+                    </tr>
+					<!--{/if}-->
+					<!--{if !empty($diysd[2])}-->
+                    <tr>
+                          <th>{$diysd[2]}</th>
+                          <td colspan="4">
+								 {$mythread['sd3']}
+                          </td>
+                    </tr>
+				    <!--{/if}-->
+					<!--{if !empty($diysd[3])}-->
+                    <tr>
+                          <th>{$diysd[3]}</th>
+                          <td colspan="4">                                                      
+								{$mythread['sd4']}
+                          </td>
+                    </tr>
+					<!--{/if}-->
+					<!--{if !empty($diysd[4])}-->
+                    <tr>
+                           <th>{$diysd[4]}</th>
+                           <td colspan="4">
+								 {$mythread['sd5']}
+                           </td>
+                    </tr>
+					<!--{/if}-->
+                    <tr>
+                           <td colspan="5"> 
+                                $qqshareset
+                           </td>
+                    </tr>
+                </table>
+                <div class="clear"></div>
+                </div>
+                <!-- /table -->
+                <!-- info -->
+                <div class="m-lp_m_tit">
+                    <h2 name="detail" id="detail">{lang mini_pet:info}</h2>
+                </div>
+                <div class="m-lp-det_infor" style="padding:10px 0;font-size:16px;font-family: Microsoft YaHei,Arial,SimSun; ">
+				    {$mythread['dinfo']}
+                    <!--{if $imglists}--> 
+					 <script src="static/js/forum_viewthread.js" type="text/javascript"></script>
+                     <script type="text/javascript">
+                         zoomstatus = parseInt(1);
+                         var aimgcount = new Array();
+                     </script>
+					 <script type="text/javascript" reload="1">
+                         aimgcount[1] = [{echo dimplode($imglistid)}];
+                         attachimggroup(1);
+                         attachimgshow(1);
+                         var aimgfid = 0;
+                     </script>
+                        <div class="m-pttp_box">
+                            <div class="u-tab_scroll_img_wrap">
+                                <ul class="u-tab_scroll_img">
+									<!--{loop $imglists $imglist}-->
+                                    <li>
+                                            <img id="aimg_{$imglist[id]}" data-original="{$imglist[img]}"width="204" height="151" onclick="zoom(this, '', 0)"/>
+                                    </li>
+                                    <!--{/loop}-->
+                                </ul>
+                                <div class="u-scroll_btn_1">
+                                   left
+                                </div>
+                                <div class="u-scroll_btn_2">
+                                   right
+                                </div>
+                            </div>
+                        </div>
+                    <!--{/if}--> 
+                         <!--{if $mythread['zhuangtai']=="1"}-->
+						 <!-- userinfo -->
+                         <table class="wrap_table" style="margin:10px 0;">
+						     <!--{if $lookset=="1" && !$_G['uid']}-->
+							 <tr>
+							      <th style="text-align:center"><a href="member.php?mod=logging&action=login" style="color:#24B4E3">{lang mini_pet:viewdenglutixing}</a></th>
+							 </tr>
+							 <!--{else}-->
+		                     <tr>
+			                     <td rowspan="2" style="width:82px;">
+				                     <img src="uc_server/avatar.php?uid={$mythread[uid]}&size=middle" width="65" height="65" {if $mythread['baomi']=="1"||$_G[uid] == $mythread[uid]||$_G['groupid']=="1"||in_array($_G['uid'], $admins)}title="{lang mini_pet:lianxiren}{lang mini_pet:maohao}{$mythread['xingming']}"{else}title="{lang mini_pet:viewbaomitishi}"{/if}>
+		                         </td>
+			                     <th> {lang mini_pet:weixin} </th>
+			                     <td class="s-w_240">
+				                     <!--{if $mythread['baomi']=="1"||$_G[uid] == $mythread[uid]||$_G['groupid']=="1"||in_array($_G['uid'], $admins)}-->{$mythread['weixin']}<!--{else}-->{lang mini_pet:viewbaomitishi}<!--{/if}-->
+			                     </td>
+			                     <th> QQ </th>
+			                     <td class="s-w_240">
+								      <!--{if $mythread['baomi']=="1"||$_G[uid] == $mythread[uid]||$_G['groupid']=="1"||in_array($_G['uid'], $admins)}--><a target="_blank" href="//wpa.qq.com/msgrd?v=3&uin={$mythread['qq']}&site=qq&menu=yes"><img border="0" src="//wpa.qq.com/pa?p=2:{$mythread[qq]}:51"/></a><!--{else}-->{lang mini_pet:viewbaomitishi}<!--{/if}-->
+			                     </td>
+		                      </tr>
+		                      <tr>
+			                      <th> {lang mini_pet:tel} </th>
+			                      <td class="s-w_240">
+									  <!--{if $mythread['baomi']=="1"||$_G[uid] == $mythread[uid]||$_G['groupid']=="1"||in_array($_G['uid'], $admins)}-->{$mythread['tel']}<!--{else}-->{lang mini_pet:viewbaomitishi}<!--{/if}-->
+									   {if $mythread['baomi']=="1"||$_G[uid] == $mythread[uid]||$_G['groupid']=="1"||in_array($_G['uid'], $admins)}{if $mythread['xingming']}({$mythread['xingming']}){/if}{/if}
+			                      </td>
+			                      <th> {lang mini_pet:qita} </th>
+			                      <td class="s-w_240">
+				                      <a onclick="showWindow('sendpm', this.href);" href="home.php?mod=spacecp&ac=pm&op=showmsg&handlekey=showmsg_$mythread[uid]&touid=$mythread[uid]&pmid=0&daterange=2"><img src="source/plugin/mini_pet/images/znx.gif"style="margin:0; padding:0;border:none;/"></a>
+			                       </td>
+		                      </tr>
+							  <!--{/if}-->
+                         </table>
+                         <!-- /userinfo -->
+                         <!--{/if}-->
+					   <center>{$callme}</center>
+                       </div>
+                    <!-- /userinfo -->
+                    <!-- pinglun-->
+                        <div class="m-lp-det_infor" style="padding:15px 0;">
+                            <div id="pingluns" class="cl">
+                               <form method="post" action="" name="applyform">
+                                 <input type="hidden" name="display" value="$mythread[display]" />
+                                 <input type="hidden" name="sid" value="{$mythread[id]}" />
+                                 <input type="hidden" name="formhash" value="{FORMHASH}" />
+                                  <div class="tedt">
+                                    <div class="bar">
+                                       <!--{eval $seditor = array('propaganda', array('bold', 'smilies'));}-->
+                                       <!--{subtemplate common/seditor}-->
+                                    </div>
+                                    <div class="area">
+                                        <textarea id="propagandamessage" style="width:99%;border:none;height:100px"  name="message"></textarea>
+                                    </div>
+                                  </div>
+									<button type="submit" name="applysubmit" id="applysubmit" value="true" class="pcbtn" style="float:right;padding: 7px 15px;font-size:16px;margin-right:14px;margin-top:10px"/><strong>{lang mini_pet:viewliuyan}</strong></button>
+                              </form>
+                            </div>
+                            <!--{if $count != 0}-->
+                            <div class="pl">
+                            {loop $pls $pl} 
+                            <div class="pl2">                                                                                                               
+                                <span class="y">{echo date('Y-m-d',$pl[dateline])} <!--{if $_G[uid] == $mythread[uid]}-->
+							    <a onclick="showWindow('reply', 'plugin.php?id=mini_pet&mod=reply&sid={$pl[sid]}&did={$pl[id]}', 'get', 0)"style="color:orange;">{lang mini_pet:pinglunhuifu}</a><!--{/if}-->
+						        <!--{if $_G['groupid']=="1"}--><a href="plugin.php?id=mini_pet&mod=view&pinglun=del&sid={$_GET['sid']}&did={$pl[id]}&formhash={FORMHASH}" onclick="return confirm('{lang mini_pet:quedingshanchu}')"style="color:red;">[{lang mini_pet:shanchu}]</a><!--{/if}-->
+							    </span>
+							  <img src="uc_server/avatar.php?uid={$pl[uid]}&size=small" width="20" height="20">$pl[author]:
+                              <p>
+							   <!--{eval echo discuzcode($pl[message]); }-->
+							  </p>
+							  <!--{if !empty($pl['reply'])}-->
+							  <p style="background:#fafafa;padding:5px;border:1px solid #eee;color:#FF9900;">{lang mini_pet:pinglunhuifu}{lang mini_pet:maohao}<!--{eval echo discuzcode($pl[reply]); }--></p>
+							  <!--{/if}-->
+                            </div>
+                            {/loop}
+                            {$multi}
+                        </div>
+                        <!--{/if}--> 
+                        </div>
+                    <!-- /pinglun -->
+             </div>
+    </div>
+    <!--left-->
+    <!--right-->
+    <div class="sd" style="float:right;">
+        <!-- tuijian -->
+        <div class="u-lp-s-box">
+            <div class="u-lp-s-title">
+                <h3>{lang mini_pet:tuijianxinxi}</h3>
+            </div>
+                <div class="u-lp-s-con">
+                    <ul class="u-tab_list">
+				        <!--{if $tuijians}-->
+				        <!--{loop $tuijians $key $tuijian}-->
+                        <li class="z-c">
+                            <div class="u-tab_list_img">
+                                <a href="{if $html == 1}{$mininame}_{$tuijian[id]}.html{else}plugin.php?id=mini_pet&mod=view&sid={$tuijian[id]}{/if}" title="{$tuijian[title]}" target="_blank"><img src="{if !empty($tuijian[pic])}{$tuijian[pic]}{else}{$defaultpic}{/if}" width="50" height="50" /></a>
+                            </div>
+                            <div class="u-tab_list_txt">
+                                <p style="height:20px;overflow: hidden;">
+                                    <a href="{if $html == 1}{$mininame}_{$tuijian[id]}.html{else}plugin.php?id=mini_pet&mod=view&sid={$tuijian[id]}{/if}" title="{$tuijian[title]}"  target="_blank">{$tuijian[title]}</a>    
+                                </p>
+                                <p>
+									<!--{if !empty($tuijian['petname'])}-->  {$tuijian['petname']}<!--{else}-->{$tuijian['cate']}<!--{/if}-->
+                                </p>
+                             </div>
+                        </li>
+					    <!--{/loop}-->
+                        <!--{else}-->
+                             {lang mini_pet:zanwu}    
+                        <!--{/if}-->
+                    </ul>
+                </div>
+        </div>
+        <!-- /tuijian -->
+        <!-- hot -->
+        <div class="u-lp-s-box">
+            <div class="u-lp-s-title">
+                <h3>{lang mini_pet:remenxinxi}</h3>
+            </div>
+            <div class="u-lp-s-con">
+                <ul class="u-tab_list">
+				    <!--{if $hots}-->
+					<!--{loop $hots $key $hot}--> 
+                    <li class="z-c">
+                        <div class="u-tab_list_img">
+                            <a href="{if $html == 1}{$mininame}_{$hot[id]}.html{else}plugin.php?id=mini_pet&mod=view&sid={$hot[id]}{/if}" title="{$hot[title]}" target="_blank"><img src="{if !empty($hot[pic])}{$hot[pic]}{else}{$defaultpic}{/if}" width="50" height="50" /></a>
+                        </div>
+                        <div class="u-tab_list_txt">
+                            <p style="height:20px;overflow: hidden;">
+							    <a href="{if $html == 1}{$mininame}_{$hot[id]}.html{else}plugin.php?id=mini_pet&mod=view&sid={$hot[id]}{/if}" title="{$hot[title]}" target="_blank">{$hot[title]}</a>
+                            </p>
+                            <p>
+								<!--{if !empty($hot['petname'])}--> {$hot['petname']}<!--{else}-->{$hot['cate']}<!--{/if}-->
+                            </p>
+                        </div>
+                    </li>
+					<!--{/loop}-->
+                    <!--{else}-->
+                    {lang mini_pet:zanwu}  
+                    <!--{/if}-->
+                </ul>
+            </div>
+        </div>
+        <!-- /hot -->
+    </div>
+    <!--right-->
+    <div class="clear"></div>
+<!--{if $footad}-->
+    <div style="width:100%; margin:5px auto;overflow:hidden;">{$footad}</div>
+<!--{/if}-->
+</div>
+<script type="text/javascript" src="source/plugin/mini_pet/js/jquery.min.js"></script>
+<script type="text/javascript" src="source/plugin/mini_pet/js/view-jquery.lazyload.min.js"></script>
+<script type="text/javascript" src="source/plugin/mini_pet/js/view-show.js"></script>
+<script type="text/javascript">
+JQUERY = jQuery.noConflict(); 
+</script>
+{template common/footer}

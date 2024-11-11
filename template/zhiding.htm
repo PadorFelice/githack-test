@@ -1,0 +1,47 @@
+<!--{template common/header}-->
+<style type="text/css">
+/*table*/
+.wrap_table {width:97%;font-family: microsoft yahei,arial,SimSun;background-color:#fff;margin:10px 10px 0;}
+.wrap_table, .wrap_table td, .wrap_table th, .wrap_table tr { border:1px solid #ebebeb; color:#676767;}
+.wrap_table th { text-align:center; height:40px; background:#f8f8f8; font-size:14px;width:70px;}
+.wrap_table td { padding-left:10px; height:40px; font-size:14px; line-height:20px;}
+input,textarea{padding:3px;margin:1px 0;border-radius:0;background-color:white;border:1px solid #bfbfbf}
+.btn{border:none;background:{$minicolor}; padding:5px 8px;color:#fff;border-radius:3px;margin-bottom:10px;}
+</style>
+<h3 class="flb">
+    <em>{lang mini_pet:zhidingxinxizhiding}</em>
+    <span><a href="javascript:;" onclick="hideWindow('$_GET['handlekey']');" class="flbc"title="{lang close}">{lang close}</a></span>
+</h3>
+<!--{if $item['topdateline']!= 0}-->
+<p style="margin:5px">{lang mini_pet:zhidingxinxichuyu}<font color="red">{echo date('Y-m-d h:i:s',$item[topdateline])}</font>{lang mini_pet:zhidingdaoqi}</p>
+<!--{else}-->
+<form method="post" action="plugin.php?id=mini_pet&mod=zhiding&applysubzhiding=true"name="applyform">
+    <input type="hidden" name="formhash" value="{FORMHASH}" />
+    <input type="hidden" name="sid" value="{$_GET['sid']}" />
+    <table class="wrap_table" style="width:300px;margin:10px;">
+        <tr>
+            <th>
+                {lang mini_pet:zhidingjiage}
+            </th>
+            <td>
+                {$creditc}{$moneytypec}
+            </td>
+			<!--{if !empty($jifenchongzhi)}-->
+            <td>
+				 <a href="$jifenchongzhi"  class="btn" target="_blank">{lang mini_pet:jifenchongzhi}</a>
+            </td>
+			<!--{/if}-->
+        </tr>
+        <tr>
+            <th>
+              {lang mini_pet:zhiding}
+            </th>
+            <td colspan="2">
+             <input type="text" name="day" value="1" size="5"  onkeyup="value=this.value.replace(/\D+/g,'')"/> {lang mini_pet:zhidingtian}
+            </td>
+        </tr>
+    </table>
+    <center>{lang mini_pet:zhidingshunxu}<br><button type="submit" name="applysubzhiding" id="applysubzhiding" value="true"class="btn" style="margin-bottom:10px;"/><strong>{lang mini_pet:queding}</strong></button></center>
+</form>
+<!--{/if}-->
+<!--{template common/footer}-->

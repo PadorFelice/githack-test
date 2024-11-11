@@ -1,0 +1,259 @@
+<!--{template mini_pet:header}-->
+<style>
+.clear{ clear:both;}
+input,textarea{padding:3px;margin:1px 0;border-radius:0;background-color:white;border:1px solid #bfbfbf}
+select{width:40%;padding:3px;margin:1px 0;border-radius:0;background-color:white;border:1px solid #bfbfbf}
+.hIcon,.h_nav_items li,.f_search_btn,.backPrevPage,.backTop,.footer_t_ico{background:url(source/plugin/mini_pet/images/mhead.png) no-repeat 0 0;background-size:50px auto}
+.sinaHead{z-index:99;border-bottom:1px solid {$mobilemenubgcolor};clear:both;overflow:hidden;background:#f8f8f8;line-height:42px;min-height:42px;font-size:16px;position:relative}
+.h_txt{float:left;text-align:center;position:relative;width:52px;height:42px;display:inline-block;background-position:6px 6px;overflow:hidden;border-right:1px solid #dfdfdf;}
+.h_nav{width:30px;height:30px;position:absolute;top:6px;right:10px;background-position:0 -164px;text-indent:999em;overflow:hidden}
+.h_nav_items{overflow:hidden;height:42px;}
+.h_nav_items li{float:left;padding:0 12px 0 8px;background-position:right -92px;overflow: hidden; white-space: nowrap; text-overflow: ellipsis;}
+.h_nav_items li:only-child{padding:0 12px 0 8px!important;background-position:right -92px!important}
+.h_nav_items li:last-child{background-position:right -800px;padding-right:0}
+.mod-nav{width:auto;height:37px;line-height:37px;padding-left:10px;font-size:16px;border-bottom:1px solid #dfdfdf;overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch}
+.mid-nav{background-color:#f8f8f8;padding-left:4px;white-space:nowrap}
+.mid-nav a{padding:2px 6px;margin-right:10px;}
+.mid-nav a.active{border-radius:2px;background-color:{$mobilemenubgcolor};color:#fff}
+.ct_list{width:100%;background:#FFF;}
+.ct_list tr th{background:#eee;padding:6px;color:#666;font-size:15px;}
+.ct_list tr td{padding:5px;text-align:left;border-bottom:1px dashed #ededed;}
+/*menu*/
+.wrap_table {width:100%;font-family:Microsoft YaHei,arial,SimSun;background:#FFF;}
+.wrap_table, .wrap_table td, .wrap_table th, .wrap_table tr { border:1px solid #EBEBEB; color:#676767;}
+.wrap_table th {height:40px; background:#F8F8F8; font-size:14px;padding-left:5px}
+.wrap_table td { padding-left:5px; height:40px; font-size:14px;}
+.menu_table {background:#eee;width:100%;font-family:Microsoft YaHei,arial,SimSun;position:fixed;bottom:0;left:0;text-align:center;border:1px solid #ccc;}
+.menu_table td {height:40px; font-size:14px;line-height:40px;}
+.btn{border:none;background:{$mobilemenubgcolor}; padding:5px 8px;color:#fff;border-radius:3px;}
+/*user*/
+.g-next{position:relative}
+.g-base-arrow:after,.g-next:after{display:block;content:'';height:7px;width:7px;border:2px solid #d3d3d3;border-width:0 2px 2px 0}
+.g-next:after{position:absolute;top:0;bottom:0;margin:auto;right:10px;-webkit-transform:rotate(-45deg);transform:rotate(-45deg)}
+.clearfix:after{display:block;height:0;line-height:0;content:'';clear:both;visibility:hidden}
+.icon-comm{background:url(source/plugin/mini_pet/images/user_icon.png) no-repeat;-webkit-background-size:141px 112px;background-size:140px 142px;position:relative}
+.mh-header{height:140px;background:{$mobilemenubgcolor};color:#fff;position:relative;box-sizing:border-box;text-align:center}
+.mh-photo{height:70px;width:70px;border-radius:100%;margin-top:10px;}
+.mh-lg{display:inline-block;font-size:16px;margin-top:10px;position:relative;color:#fff}
+.mh-lg-a{width:80px;line-height:23px;border:1px solid #fff}
+.mh-username-icon{display:inline-block;width:13px;height:10px;background-position:-40px -100px;margin-left:3px}
+.border-1px{border-bottom:1px #e4e4e6 solid}
+.border-bottom-10px{border-bottom:10px #f1f1f1 solid}
+.mh-list>li{background-color:#fff}
+.mh-list>li>a{display:-webkit-box;margin:0 10px;line-height:46px;font-size:18px;color:#3b3b3b;position:relative;-webkit-box-align:center}
+.mh-list>li>a>span{display:block;margin-right:10px}
+#mh-list-dp>span{background-position:-40px -120px;height:14px;width:16px}
+#mh-list-sc>span{background-position:-60px -121px;height:17px;width:16px}
+#mh-list-xfjl>span{background-position:-79px -121px;height:17px;width:17px}
+#mh-list-fb>span{background-position:-120px -120px;height:17px;width:16px}
+#mh-list-wdfb>span{background-position:-120px -100px;height:16px;width:16px}
+#mh-list-xxgl>span{background-position:-100px -101px;height:17px;width:16px}
+#mh-list-lygl>span{background-position:-40px -121px;height:17px;width:16px}
+#mh-list-myyp>span{background-position:-40px -101px;height:17px;width:16px}
+#mh-list-myinfo>span{background-position:-40px -61px;height:16px;width:16px}
+#mh-list-banner>span{background-position:-55px -50px;height:17px;width:17px}
+#mh-card>.num-wrap{position:absolute;top:0;right:15px;margin-right:0;color:#999}
+.mh-num{position:absolute;color:#ff7214;right:15px}
+.num-wrap>.mh-num{position:relative;right:0}
+.bluebtn{border:none;background:#EE7621; padding:5px 8px;color:#fff;border-radius:3px;}
+/*usersearch*/
+.xlwsqsearch{margin:1px 3px;font-family: "microsoft yahei",arial,SimSun;background:{$mobilemenubgcolor};border-radius:3px;}
+.xlwsqsearch_content{width:70%;background:white;border:1px solid {$mobilemenubgcolor};color:#707070;padding:5px;background:#fff url(source/plugin/mini_pet/images/search.gif) no-repeat 5px 5px;padding-left:30px;}
+.xlwsqsearch_submit{background:{$mobilemenubgcolor};border:1px solid {$mobilemenubgcolor};color:#fff;font-weight:bold;height:30px;width:17%;font-size:16px;text-align:center}
+/*menu*/
+ #menufooter {background-color:#EEEEEE; z-index:999; position:fixed; bottom:0; left:0;width:100%;height:50px; _position:absolute;
+ _top: expression_r(documentElement.scrollTop + documentElement.clientHeight-this.offsetHeight); overflow:visible; text-align: center;border-top:1px solid #E7E7E7}
+.vk_grid_5 { clear: left; }
+.vk_grid_5 li { width: 25%; display: inline-block; margin: 0; padding: 0; border: 0; float: left;  }
+.vk_grid_5 li { text-align:center; height:50px; line-height: 82px; background: none; }
+.vk_grid_5 li:nth-child(5) { width: 20%; margin-right: -.5px;  background: none; }
+.vk_grid_5 li a { display:inline-block; width:100%; height:100%; font-size:12px; font-weight:normal; text-shadow:none; }
+.vk_icon {}
+.vk_icon_index { background: url(source/plugin/mini_pet/images/shouye.png)  no-repeat 50% 14%;  background-size: 28px 28px;}
+.vk_icon_add { background: url(source/plugin/mini_pet/images/add.png)  no-repeat 50% 14%;  background-size: 28px 28px; }
+.vk_icon_hyzx { background: url(source/plugin/mini_pet/images/hyzx.png)  no-repeat 50% 14%;  background-size: 28px 28px; }
+.adminlist {margin:0 10px;font-size:14px;}
+.adminlist li{float:left;width:46%;background-color:{$mobilemenubgcolor};margin:5px;text-align:center}
+.adminlistbtn{border:none;background:{$mobilemenubgcolor}; padding:5px 25px;color:#fff;border-radius:3px;}
+.xuanxiangka{height:40px;background:#eee;width:100%;font-family: "Microsoft YaHei",Arial,SimSun;}
+.xuanxiangka a{display:block;float:left;padding:9px 0px 9px;cursor:pointer;background:#eee;text-decoration:none;width:80px;height:22px;text-align:center;font-size:16px;color:{$mobilemenubgcolor}}
+</style>
+<!--{if $p == 'add'||$p == 'edit'}-->
+<script type="text/javascript" src="{$_G[setting][jspath]}common.js?{VERHASH}"></script>
+<script type="text/javascript">
+				function validate(theform) {
+					if(theform.title.value == '') {
+                        alert('{lang mini_pet:meiyoubiaoti}');
+						theform.title.focus();
+						return false;
+					}
+				}
+</script>
+<!--{/if}-->
+<nav class="sinaHead">
+		{if $p != 'index'}<h2><a class="h_txt" style="width:auto;padding:0 10px" href="javascript:history.go(-1)">{lang mini_pet:mobliefanhui}</a></h2>{/if}
+		<ul class="h_nav_items">
+			<li><a href="{if $html == 1}{$mininame}.html{else}plugin.php?id=mini_pet{/if}">{$title}</a></li>
+			<li><a href="{if $html == 1}{$mininame}_user.html{else}plugin.php?id=mini_pet:mini_pet_user{/if}">{lang mini_pet:huiyuanzhongxin}</a></li>
+		</ul>
+</nav>
+<!--{if $_GET['p']==add||$_GET['p']==add2||$_GET['p']==mylist||$_GET['p']==favorites||$_GET['p']==consumption||$_GET['p']==edit}-->
+<section class="mod-nav mid-nav">
+    <a href="{if $html == 1}{$mininame}_user_add.html{else}plugin.php?id=mini_pet:mini_pet_user&amp;p=add{/if}" {if $_GET['p']==add}class="active"{/if}>{lang mini_pet:fabuxunchongxinxi}</a>
+    <a href="{if $html == 1}{$mininame}_user_add2.html{else}plugin.php?id=mini_pet:mini_pet_user&amp;p=add2{/if}" {if $_GET['p']==add2}class="active"{/if}>{lang mini_pet:fabuzhaolingxinxi}</a>
+    <a href="{if $html == 1}{$mininame}_user_mylist.html{else}plugin.php?id=mini_pet:mini_pet_user&amp;p=mylist{/if}" {if  $p == 'mylist' || $p == 'edit'}class="active"{/if}>{lang mini_pet:wodefabu}</a>
+    <a href="{if $html == 1}{$mininame}_user_favorites.html{else}plugin.php?id=mini_pet:mini_pet_user&amp;p=favorites{/if}" {if $_GET['p']==favorites}class="active"{/if}>{lang mini_pet:wodeshoucang}</a>
+    <a href="{if $html == 1}{$mininame}_user_xfjl.html{else}plugin.php?id=mini_pet:mini_pet_user&amp;p=consumption{/if}" {if $_GET['p']==consumption}class="active"{/if}>{lang mini_pet:xiaofeijilu}</a>
+	<!--{if !empty($jifenchongzhi)}-->
+    <a href="$jifenchongzhi" target="_blank">{lang mini_pet:jifenchongzhi}</a>
+	<!--{/if}-->
+</section>
+<!--{/if}-->
+<!--{if $_GET['p']==adminalllist||$_GET['p']==adminpinglun||$_GET['p']==adminpic||$_GET['p']==banner||$_GET['p']==banneredit||$_GET['p']==banneradd}-->
+<section class="mod-nav mid-nav">
+	<!--{if $_G['groupid']=="1"||in_array($_G['uid'], $admins)}-->
+    <a href="plugin.php?id=mini_pet:mini_pet_user&p=adminalllist" {if $_GET['p']==adminalllist}class="active"{/if}>{lang mini_pet:xinxiguanli}</a>
+    <a href="plugin.php?id=mini_pet:mini_pet_user&p=adminpinglun" {if $_GET['p']==adminpinglun}class="active"{/if}>{lang mini_pet:pinglunguanli}</a>
+    <a href="plugin.php?id=mini_pet:mini_pet_user&amp;p=adminpic" {if $_GET['p']==adminpic}class="active"{/if}>{lang mini_pet:tupianguanli}</a>
+    <a href="plugin.php?id=mini_pet:mini_pet_user&amp;p=banner" {if $_GET['p']==banner||$_GET['p']==banneredit||$_GET['p']==banneradd}class="active"{/if}>{lang mini_pet:bannerguanli}</a>
+	<!--{/if}-->
+</section>
+<!--{/if}-->
+<!--{if $p == 'mylist'}-->
+<style>
+.mylist_a .list_a{background-color:#fff;}
+.mylist_a .list_a span{height:20px;line-height:20px;}
+.list_a{margin:5px 0;display:-moz-box;display:-webkit-box;border-top:1px solid #fff;border-bottom:1px solid #cfcfcf;overflow:hidden;}
+.list_a .left{-moz-box-flex:1.0;-webkit-box-flex:1.0;}
+.list_a .img{width:80px;height:80px;padding:3px;overflow:hidden;}
+.list_a .img img{width:75px;height:54px;padding:3px;}
+.list_a .main{font-size:14px;line-height:20px;color:#999;-moz-box-flex:1;-webkit-box-flex:1;height:90px;padding:3px 0 0 2px;overflow:hidden;}
+.list_a .main strong{height:20px;line-height:20px;display:inline-block;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;font-size:14px;color:#222;}
+.list_a a{display:inline-block;}
+.list_a span{display:inline-block;}
+.list_a .main .intro{color:#989898;}
+.list_a .right a{color:#369;display:inline-block;border:1px solid #ccc;border-radius:4px;height:32px;line-height:32px;margin:4px;padding:0 5px;font-size:16px;text-align:center;background: -moz-linear-gradient(-90deg,#f7f7f7,#dfdfdf);background: -o-linear-gradient(-90deg,#f7f7f7,#dfdfdf);background: -webkit-gradient(linear,left top,left bottom,from(#f7f6f6),to(#dfdfdf));filter: progid : DXImageTransform.Microsoft.gradient(startColorstr=#f7f7f7,endColorstr=#dfdfdf);cursor: pointer;overflow:hidden;}
+</style>
+<div class="mylist_a">
+  <ul>
+     <!--{if $manylist}-->
+     <!--{loop $manylist $key $o}-->
+    <li>
+      <div class="list_a">
+        <div class="img" style="text-align:center">
+		    <a href="{if $html == 1}{$mininame}_{$o[id]}.html{else}plugin.php?id=mini_pet&mod=view&sid=$o[id]{/if}"><img src="{if !empty($o[pic])}{$o[pic]}{else}source/plugin/mini_pet/images/nopic.jpg{/if}"/></a>
+				<!--{if empty($o[display])}-->
+                  <font style="color:#F00">{lang mini_pet:weishenhe}</font>
+                <!--{else}-->
+                  <font style="color:#090">{lang mini_pet:yishenhe}</font>
+                <!--{/if}-->
+		</div>
+        <div class="main">
+          <a href="{if $html == 1}{$mininame}_{$o[id]}.html{else}plugin.php?id=mini_pet&mod=view&sid=$o[id]{/if}"><strong>{$o[title]}</strong></a>
+		  <br/>
+          <!--{if !empty($o[cate])}--><span class="intro" style="font-size:12px">{$o['cate']}</span><!--{/if}--><br/>
+          <!--{if !empty($o[area])}--><span class="intro" style="font-size:12px">{$o['area']}</span><!--{/if}--><br/>
+          <span class="intro" style="font-size:12px">
+		      <!--{if $o[display]==1}-->
+                  <a href="plugin.php?id=mini_pet:index&mod=freshen&sid={$o[id]}&formhash={FORMHASH}" style="font-size:12px;color:red;cursor:pointer">{lang mini_pet:shuaxin}</a> / 
+                  <!--{if $creditc!="0"}-->
+			          <a href="plugin.php?id=mini_pet:mini_pet_zhiding&option=zhiding&sid={$o[id]}"style="color:orange;">{lang mini_pet:viewzhiding}</a> / 
+			      <!--{/if}-->
+				  <a href="plugin.php?id=mini_pet:mini_pet_user&p=yizhaodao&sid={$o[id]}&formhash={FORMHASH}"><!--{if $o[zhuangtai]==2}--><font color="#999">{lang mini_pet:yizhaodao}</font><!--{else}--><font color="blue">{lang mini_pet:xunzhaozhong}</font><!--{/if}--></a> / 
+			  <!--{/if}-->
+		  {echo date('Y-m-d',$o[dateline])}
+		  </span>
+        </div>
+        <div class="right">
+		    <a href="plugin.php?id=mini_pet:mini_pet_user&amp;p=edit&amp;sid=$o[id]">{lang mini_pet:bianji}</a>
+			<br/>
+			<a href="plugin.php?id=mini_pet:mini_pet_user&amp;p=del&amp;sid=$o[id]&formhash={FORMHASH}"onclick="return confirm('{lang mini_pet:quedingshanchu}')">{lang mini_pet:shanchu}</a>
+		</div>
+      </div>
+    </li>
+       <!--{/loop}-->
+       <!--{else}-->
+	   {lang mini_pet:zanwu}
+       <!--{/if}-->
+  </ul>
+</div>
+<div style=" width:100%; height:auto; float:left;">{$multir}</div>
+<!--{elseif $p == 'add'||$p == 'add2'}-->
+<!--{template mini_pet:add}-->
+<!--{elseif $p == 'edit'}-->
+<!--{template mini_pet:edit}-->
+<!--{elseif $p == 'favorites'}-->
+<!--{template mini_pet:myfavorites}-->
+<!--{elseif $p == 'consumption'}-->
+<!--{template mini_pet:xfjl}-->
+<!--{elseif $p == 'adminalllist'}-->
+<!--{template mini_pet:adminalllist}-->
+<!--{elseif $p == 'adminpic'}-->
+<!--{template mini_pet:adminpic}-->
+<!--{elseif $p == 'adminpinglun'}-->
+<!--{template mini_pet:adminpinglun}-->
+<!--{elseif $p == 'banner'}-->
+<!--{template mini_pet:banner}-->
+<!--{elseif $p == 'banneradd'}-->
+<!--{template mini_pet:banneradd}-->
+<!--{elseif $p == 'banneredit'}-->
+<!--{template mini_pet:banneredit}-->
+<!--{else}-->
+<div class="mh-header">
+       {if !$_G['uid']}
+			  <img class="mh-photo" src="uc_server/avatar.php?uid={$_G[uid]}&size=big" >
+       {else}
+              <a href="home.php?mod=space&uid={$_G[uid]}&do=profile&mycenter=1"><img class="mh-photo" src="uc_server/avatar.php?uid={$_G[uid]}&size=big" ></a>
+       {/if}
+       <br>
+       {if !$_G['uid']}<a href="member.php?mod={$_G[setting][regname]}" class="mh-lg mh-lg-a" style="color:#fff">{lang register}</a> <a href="member.php?mod=logging&action=login" class="mh-lg mh-lg-a" style="color:#fff">{lang login}</a>{else}<p style="font-size:1.4rem;margin-top:10px">$_G['username']</p>{/if}
+</div>
+<ul class="mh-list">
+    <li class="border-1px">
+            <a id="mh-list-fb" class=" g-next" href="{if $html == 1}{$mininame}_user_add.html{else}plugin.php?id=mini_pet:mini_pet_user&amp;p=add{/if}"><span class="icon-comm"></span>{lang mini_pet:fabuxunchongxinxi}</a>
+    </li>
+    <li class="border-1px">
+            <a id="mh-list-fb" class=" g-next" href="{if $html == 1}{$mininame}_user_add2.html{else}plugin.php?id=mini_pet:mini_pet_user&amp;p=add2{/if}"><span class="icon-comm"></span>{lang mini_pet:fabuzhaolingxinxi}</a>
+    </li>
+    <li class="border-1px">
+        <a id="mh-list-wdfb" class=" g-next" href="{if $html == 1}{$mininame}_user_mylist.html{else}plugin.php?id=mini_pet:mini_pet_user&amp;p=mylist{/if}"><span class="icon-comm"></span>{lang mini_pet:wodefabu}</a>
+    </li>
+    <li class="border-1px">
+        <a id="mh-list-sc" class=" g-next" href="{if $html == 1}{$mininame}_user_favorites.html{else}plugin.php?id=mini_pet:mini_pet_user&amp;p=favorites{/if}"><span class="icon-comm"></span>{lang mini_pet:wodeshoucang}<em class="mh-num"></em></a>
+    </li>
+    <li class="border-bottom-10px">
+        <a id="mh-list-banner" class=" g-next" href="{if $html == 1}{$mininame}_user_xfjl.html{else}plugin.php?id=mini_pet:mini_pet_user&amp;p=consumption{/if}"><span class="icon-comm"></span>{lang mini_pet:xiaofeijilu}</a>
+    </li>
+	<!--{if $_G['groupid']=="1"||in_array($_G['uid'], $admins)}-->
+    <li class="border-1px">
+        <a id="mh-list-fb" class=" g-next" href="plugin.php?id=mini_pet:mini_pet_user&p=adminalllist"><span class="icon-comm"></span>{lang mini_pet:xinxiguanli}</a>
+    </li>
+    <li class="border-1px">
+        <a id="mh-list-lygl" class=" g-next" href="plugin.php?id=mini_pet:mini_pet_user&p=adminpinglun"><span class="icon-comm"></span>{lang mini_pet:pinglunguanli}</a>
+    </li>
+    <li class="border-1px">
+        <a id="mh-list-banner" class=" g-next" href="plugin.php?id=mini_pet:mini_pet_user&amp;p=adminpic"><span class="icon-comm"></span>{lang mini_pet:tupianguanli}</a>
+    </li>
+    <li class="border-1px">
+        <a id="mh-list-banner" class=" g-next" href="plugin.php?id=mini_pet:mini_pet_user&amp;p=banner"><span class="icon-comm"></span>{lang mini_pet:bannerguanli}</a>
+    </li>
+    <!--{/if}-->
+</ul>
+<a href="member.php?mod=logging&action=logout&formhash={FORMHASH}" style="color:#fff;font-size:20px;">
+  <div style="text-align:center; margin:10px auto 0;width:95%;background:{$mobilemenubgcolor};border:none;border-radius:3px;padding:5px 0">
+     {lang mini_pet:mobiletuichu}
+  </div>
+</a>
+<!--{/if}-->
+<div id="menufooter">
+  <div class="vk_grid_5" >
+    <ul>
+      <li><a href="{if $html == 1}{$mininame}.html{else}plugin.php?id=mini_pet{/if}" class="vk_icon_index">{lang mini_pet:mobileindex}</a></li>
+      <li><a href="{if $html == 1}{$mininame}_user_add.html{else}plugin.php?id=mini_pet:mini_pet_user&p=add{/if}" class="vk_icon_add"{if $_GET['p']== 'add'}style="color:{$mobilemenubgcolor}"{/if}> {lang mini_pet:fabuxunchongxinxi}</a></li>
+      <li><a href="{if $html == 1}{$mininame}_user_add2.html{else}plugin.php?id=mini_pet:mini_pet_user&p=add2{/if}" class="vk_icon_add"{if $_GET['p']== 'add2'}style="color:{$mobilemenubgcolor}"{/if}> {lang mini_pet:fabuzhaolingxinxi}</a></li>
+      <li><a href="{if $html == 1}{$mininame}_user.html{else}plugin.php?id=mini_pet:mini_pet_user{/if}" class="vk_icon_hyzx" {if $_GET['p']!= 'add' && $_GET['p']!= 'add2'}style="color:{$mobilemenubgcolor}"{/if}> {lang mini_pet:huiyuanzhongxin} </a></li>
+    </ul>
+  </div>
+</div>
+<div class="clear"><div>
+<!--{template mini_pet:footer}-->

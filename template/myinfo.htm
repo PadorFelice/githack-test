@@ -1,0 +1,36 @@
+<form method="post" autocomplete="off" id="addform" name="addform" enctype="multipart/form-data" action="" />
+    <input type="hidden" name="formhash" value="{FORMHASH}" />
+
+        <div class="tablesx">
+        <table class="ct_list" width="100%">
+
+            <tr>
+                <td width="110">{lang mini_pet:myinfoname}</td>
+                <td><input type="text" name="xingming" size="55" id="xingming" value="{$usersx[xingming]}"></td>
+            </tr>
+
+
+            <tr>
+                <td>{lang mini_pet:myinfotel}</td>
+                <td><input type="text" name="tel" size="55" id="tel" value="{$usersx[tel]}"  onkeyup="this.value=this.value.replace(/[^0-9-]+/,'');"></td>
+            </tr>
+
+
+            <tr>
+                <td>QQ</td>
+                <td><input type="text" name="qq" size="55" id="qq" value="{$usersx[qq]}" onkeyup="value=this.value.replace(/\D+/g,'')"></td>
+            </tr>
+
+            <tr>
+                <td>{lang mini_pet:myinfoqitalianxi}</td>
+                <td><input type="text" name="qitalianxi" size="55" id="qitalianxi" value="{$usersx[qitalianxi]}" >{lang mini_pet:myinfoqitalianxibeizhu}</td>
+            </tr>
+
+
+        </table>
+       {lang mini_pet:myinfotongbugengxinshuoming}
+    </div>
+    <div style="text-align:center; margin:10px auto; width:100%; float:left">
+        <button type="submit" name="applysuser" id="applysuser" value="true" class="pn pnp" /><strong>{lang mini_pet:myinfotijiao}</strong></button>
+    </div>
+</form>

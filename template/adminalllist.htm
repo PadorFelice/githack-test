@@ -1,0 +1,39 @@
+<script src="source/plugin/mini_pet/js/selectall.js"></script>
+<table class="wrap_tableb" width="100%" bgcolor="#FFFFFF">
+<tr>
+    <th width="20"></th><th>{lang mini_pet:mingcheng}</th><th>{lang mini_pet:fabushijian}</th><th>{lang mini_pet:zhuangtai}</th><th>{lang mini_pet:caozuo}</th>
+</tr>
+ <form method="post" autocomplete="off" action="" name="applyform">
+ <input type="hidden" name="formhash" value="{FORMHASH}" />
+  {loop $manylist $key $o}
+    <tr>
+	   <td><input type="checkbox" class="checkbox" name="piliang[]" value="{$o[id]}"></td>
+        <td title="{$o[title]}"><a href="<!--{if $html == 1}-->{$mininame}_$o[id].html<!--{else}-->plugin.php?id=mini_pet&mod=view&sid=$o[id]<!--{/if}-->" target="_blank"><!--{if $o[hr]==1}--><font color="orange">{lang mini_pet:zhu}</font><!--{else}--><font color="green">{lang mini_pet:qiu}</font><!--{/if}-->{echo cutstr({$o[title]}, 20)}</a><!--{if $o[tuijian]==1}-->&nbsp;<span style="color:#F00">[{lang mini_pet:jian}]</span><!--{/if}--><!--{if $o[top]==1}-->&nbsp;<span style="color:#F00">[{lang mini_pet:ding}]</span><!--{/if}--></td>
+        <td>{echo date('y-m-d',$o[dateline])}</td>
+        <td>
+            <!--{if empty($o[display])}-->
+           <a href="plugin.php?id=mini_pet:mini_pet_user&amp;p=shenheok&sid={$o[id]}&formhash={FORMHASH}"><span style="color:#F00">{lang mini_pet:weishenhe}</span></a>
+            <!--{else}-->
+			 <a href="plugin.php?id=mini_pet:mini_pet_user&amp;p=qxshenhe&sid={$o[id]}&formhash={FORMHASH}"><span style="color:#090">{lang mini_pet:yishenhe}</span></a>
+			 / <a href="plugin.php?id=mini_pet:mini_pet_user&p=yizhaodao&sid={$o[id]}&formhash={FORMHASH}"style="color:blue;"><!--{if $o[zhuangtai]==2}-->{lang mini_pet:yizhaodao}<!--{else}-->{lang mini_pet:xunzhaozhong}<!--{/if}--></a>
+            <!--{/if}-->
+        </td>
+        <td><a href="plugin.php?id=mini_pet:mini_pet_user&amp;p=edit&amp;sid=$o[id]" target="_blank">{lang mini_pet:bianji}</a> <a href="plugin.php?id=mini_pet:mini_pet_user&amp;p=del&amp;sid=$o[id]&formhash={FORMHASH}"onclick="return confirm('{lang mini_pet:querenshanchutishi}')">{lang mini_pet:shanchu}</a></td>
+    </tr>
+  {/loop}
+  <tr>
+ <td  colspan="5"> 
+<br/>
+<label><input type="checkbox" id="selAll" onclick="selectAll();" />{lang mini_pet:adminquanxuan}</label>
+&nbsp;&nbsp;<input type="submit" value="{lang mini_pet:adminshenhe}" name="applysubmsh" id="applysubmsh" class="sbtn">
+&nbsp;&nbsp;<input type="submit" value="{lang mini_pet:adminquxiaoshenhe}" name="applysubmqxsh" id="applysubmqxsh" class="sbtn">
+&nbsp;&nbsp;<input type="submit" value="{lang mini_pet:tuijian}" name="applysubmtj" id="applysubmtj" class="sbtn">
+&nbsp;&nbsp;<input type="submit" value="{lang mini_pet:adminquxiaotuijian}" name="applysubmqxtj" id="applysubmqxtj" class="sbtn">
+&nbsp;&nbsp;<input type="submit" value="{lang mini_pet:zhiding}" name="applysubmzd" id="applysubmtj" class="sbtn">
+&nbsp;&nbsp;<input type="submit" value="{lang mini_pet:adminquxiaozhiding}" name="applysubmqxzd" id="applysubmqxtj" class="sbtn">
+&nbsp;&nbsp;<input type="submit" class="sbtn" id="applysubmdel" name="applysubmdel" value="{lang mini_pet:shanchu}" onclick="return confirm('{lang mini_pet:quedingshanchu}')"/>
+  </td>
+  </tr>
+</form> 
+</table>
+<div style=" width:100%; height:auto; float:left;">{$multir}</div>

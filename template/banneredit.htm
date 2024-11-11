@@ -1,0 +1,44 @@
+<script language="javascript">
+function changetype(type){
+ document.getElementById(type).style.display='';
+ if(type=="text"){
+    document.getElementById('file').style.display='none';
+	document.getElementById('url').style.fontWeight='bold'; 
+	document.getElementById('up').style.fontWeight='lighter';
+ }
+ if(type=='file'){
+	document.getElementById('text').style.display='none';
+	document.getElementById('up').style.fontWeight='bold';
+	document.getElementById('url').style.fontWeight='lighter';
+ }
+}
+</script>
+<ul class="tb cl">
+<li <!--{if $p == 'banner'}-->class="a"<!--{/if}-->><a href="plugin.php?id=mini_pet:mini_pet_user&p=banner">{lang mini_pet:bannerlist}</a></li>
+<li <!--{if $p == 'banneradd'}-->class="a"<!--{/if}-->><a href="plugin.php?id=mini_pet:mini_pet_user&p=banneradd">{lang mini_pet:banneradd}</a></li>
+<li class="a"><a href="plugin.php?id=mini_pet:mini_pet_user&p=banneradd">{lang mini_pet:bianji}</a></li>
+</ul>
+<form method="post" autocomplete="off" id="editbannerform" name="editbannerform" enctype="multipart/form-data"  action="" onsubmit="return validate(this)"/>
+    <input type="hidden" name="formhash" value="{FORMHASH}" />
+        <table class="wrap_tableb" width="100%">
+            <tr>
+                <td>{lang mini_pet:bannertitle}</td>
+                <td><input type="text" name="title" size="55" id="bannertitle" value="{$active[title]}"></td>
+            </tr>
+            <tr>
+                <td>{lang mini_pet:bannerupimg}</td>
+                <td><img src="{$active[pic]}" width="500" height="100" /><br/>
+				    <input type="file" id="file" size="30" name="file" style="display:none;" /> 
+                    <input type="text" id="text"  size="60" name="pic"  value="{$active[pic]}"/> 
+                    <a href="javascript:" id="up" onclick="changetype('file'); return false;">{lang mini_pet:shangchuantupian}</a> | <a href="javascript:" id="url" onclick="changetype('text'); return false;" style="font-weight:bold;">{lang mini_pet:tupianlianjie}
+				</td>
+            </tr>
+            <tr>
+                <td>{lang mini_pet:bannerurl}</td>
+                <td><input type="text" name="url" size="55" id="bannerurl" value="{$active[url]}"></td>
+            </tr>
+        </table>
+    <div style="text-align:center; margin:10px auto; width:100%; float:left">
+    <button type="submit" name="editbannersubmit" id="editbannersubmit" value="true" class="pcbtn" /><strong>{lang mini_pet:tijiao}</strong></button>
+    </div>
+</form>

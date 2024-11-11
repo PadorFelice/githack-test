@@ -1,0 +1,12 @@
+<table class="wrap_tableb" style="background:#fff;margin-bottom:10px;">
+    <tr>
+	    <th>{lang mini_pet:mingcheng}</th><th>{lang mini_pet:shoucangshijian}</th><th>{lang mini_pet:caozuo}</th></tr>
+        {loop $scs $sc}
+        <tr>
+		    <td><a href="{if $html == 1}{$mininame}_$sc[sid].html{else}plugin.php?id=mini_pet&mod=view&sid=$sc[sid]{/if}" title="{$sc['title']}" target="_blank">{echo cutstr({$sc[title]}, 90)}</a></td>
+			<td>{$sc['dateline']}</td>
+			<td><a href="plugin.php?id=mini_pet:mini_pet_user&amp;p=favoritesdel&amp;sid=$sc[id]&formhash={FORMHASH}" onclick="return confirm('{lang mini_pet:querenshanchutishi}')">{lang mini_pet:shanchu}</a></td>
+		</tr>
+ {/loop}
+</table>
+{$multis}

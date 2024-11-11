@@ -1,0 +1,114 @@
+{template common/header}
+<style type="text/css">
+a{ cursor:pointer; text-decoration:none; outline:none; outline:none;}
+a:hover{text-decoration:none;}
+.clear{ clear:both;}
+.pcbtn{border:none;background:{$minicolor}; padding:3px 8px;color:#fff;border-radius:3px;cursor:pointer;font-size:16px;margin:5px 0;font-family: "Microsoft YaHei",Arial,SimSun;}
+.sbtn{border:none;background:{$minicolor}; padding:2px 5px;color:#fff;border-radius:3px;cursor:pointer;font-size:16px;margin:5px 0;font-family: "Microsoft YaHei",Arial,SimSun;}
+.wrap_tableb {width:100%;font-family: microsoft yahei,arial,SimSun;background-color:#fff;}
+.wrap_tableb, .wrap_tableb td, .wrap_tableb th, .wrap_tableb tr { border:1px solid #ebebeb;text-align:left;padding-left:10px}
+.wrap_tableb th {height:40px; background:#f8f8f8; font-size:14px;}
+.wrap_tableb td {height:40px; font-size:14px; line-height:20px;}
+.wrap_tableb input{font-size:14px;font-family: Microsoft YaHei,Arial,SimSun;padding: 4px 4px;line-height: 18px;border: 1px solid #CCC;background-color: white;box-shadow: 2px 2px 2px #F0F0F0 inset;vertical-align: middle;margin: 0;color: #333333}
+.xuanxiangka{height:40px;background:#eee;width:100%;font-family: "Microsoft YaHei",Arial,SimSun;}
+.xuanxiangka a{display:block;float:left;padding:9px 0px 9px;cursor:pointer;background:#eee;text-decoration:none;width:174px;height:22px;text-align:center;font-size:16px;}
+.colorbtn{display: inline-block; border: 1px solid transparent;color:#fff; line-height: 22px;border-radius: 3px;font-family: microsoft yahei,arial,SimSun;}
+.colorbtn:hover{opacity: .8;  filter: alpha(opacity=80);color:#fff}
+.colorbtn-large{padding: 5px 12px; font-size: 16px;}
+.colorbtn-blue{background-color: {$minicolor};}
+.colorbtn-red{background-color: #FF5722;}
+.colorbtn-green { background-color: #009688;}
+.zoominner { padding: 5px 10px 10px; background: #ffffff; text-align: left; }
+.zoominner p { padding: 8px 0; }
+.zoominner p a { float: left; margin-left: 10px; width: 17px; height: 17px; background: url(static/image/common/imgzoom_tb.gif) no-repeat 0 0; line-height: 100px; overflow: hidden; }
+.zoominner p a:hover { background-position: 0 -39px; }
+.zoominner p a.imgadjust { background-position: -40px 0; }
+.zoominner p a.imgadjust:hover { background-position: -40px -39px; }
+.zoominner p a.imgclose { background-position: -80px 0; }
+.zoominner p a.imgclose:hover { background-position: -80px -39px; }
+</style>
+<div id="pt" class="bm cl">
+	<div class="z">
+		<a href="./" class="nvhm" title="{lang homepage}">$_G[setting][bbname]</a><em>&raquo;</em><a href="{if $html == 1}{$mininame}.html{else}plugin.php?id=mini_pet{/if}">{$title}</a><em>&raquo;</em>{lang mini_pet:guanlimianban}
+	</div>
+</div>
+<div style="margin:0 auto 10px">
+    <!--{if in_array($_G['groupid'], $fabuset)}-->
+        <a href="{if $html == 1}{$mininame}_user_add.html{else}plugin.php?id=mini_pet:mini_pet_user&amp;p=add{/if}" class="colorbtn colorbtn-large {if $p=='add'}colorbtn-red{else}colorbtn-blue{/if}">{lang mini_pet:fabuxunchongxinxi}</a>
+        <a href="{if $html == 1}{$mininame}_user_add2.html{else}plugin.php?id=mini_pet:mini_pet_user&amp;p=add2{/if}" class="colorbtn colorbtn-large {if $p=='add2'}colorbtn-red{else}colorbtn-blue{/if}">{lang mini_pet:fabuzhaolingxinxi}</a>
+        <a href="{if $html == 1}{$mininame}_user_mylist.html{else}plugin.php?id=mini_pet:mini_pet_user&amp;p=mylist{/if}" class="colorbtn colorbtn-large {if $p=='index'||$p == 'edit'||$p == 'mylist'}colorbtn-red{else}colorbtn-blue{/if}">{lang mini_pet:wodefabu}</a>
+    <!--{/if}-->
+       <a href="{if $html == 1}{$mininame}_user_favorites.html{else}plugin.php?id=mini_pet:mini_pet_user&amp;p=favorites{/if}" class="colorbtn colorbtn-large {if $p=='favorites'}colorbtn-red{else}colorbtn-blue{/if}">{lang mini_pet:wodeshoucang}</a>
+       <a href="{if $html == 1}{$mininame}_user_xfjl.html{else}plugin.php?id=mini_pet:mini_pet_user&amp;p=consumption{/if}"class="colorbtn colorbtn-large {if $p=='consumption'}colorbtn-red{else}colorbtn-blue{/if}">{lang mini_pet:xiaofeijilu}</a>
+    <!--{if !empty($jifenchongzhi)}-->
+		<a href="$jifenchongzhi" class="colorbtn colorbtn-large colorbtn-blue" target="_blank">{lang mini_pet:jifenchongzhi}</a>
+    <!--{/if}-->
+    <!--{if $_G['groupid']=="1"||in_array($_G['uid'], $admins)}-->  
+       <a href="plugin.php?id=mini_pet:mini_pet_user&amp;p=adminalllist" class="colorbtn colorbtn-large {if $p=='adminalllist'}colorbtn-red{else}colorbtn-blue{/if}">{lang mini_pet:xinxiguanli}</a>
+       <a href="plugin.php?id=mini_pet:mini_pet_user&amp;p=adminpic" class="colorbtn colorbtn-large {if $p=='adminpic'}colorbtn-red{else}colorbtn-blue{/if}">{lang mini_pet:tupianguanli}</a>
+       <a href="plugin.php?id=mini_pet:mini_pet_user&amp;p=adminpinglun" class="colorbtn colorbtn-large {if $p == 'adminpinglun'}colorbtn-red{else}colorbtn-blue{/if}">{lang mini_pet:pinglunguanli}</a>
+       <a href="plugin.php?id=mini_pet:mini_pet_user&amp;p=banner" class="colorbtn colorbtn-large {if $p == 'banneradd'||$p == 'banner'||$p == 'banneredit'}colorbtn-red{else}colorbtn-blue{/if}">{lang mini_pet:bannerguanli}</a>
+    <!--{/if}-->
+</div>
+<!--{if $p == 'index'||$p == 'mylist'}-->
+    <div style="background:#fff">       
+        <table  class="wrap_tableb" width="100%" bgcolor="#FFFFFF">
+            <tr>
+			    <th>&nbsp;&nbsp;{lang mini_pet:mingcheng}</th>
+				<th>{lang mini_pet:fabushijian}</th>
+				<th>{lang mini_pet:zhuangtai}</th>
+				<th>{lang mini_pet:caozuo}</th>
+            </tr>
+            {loop $manylist $key $o}
+            <tr>
+                <td width="450">
+				    <a href="{if $html == 1}{$mininame}_$o[id].html{else}plugin.php?id=mini_pet&mod=view&sid=$o[id]{/if}" target="_blank" title="{$o[title]}">{echo cutstr({$o[title]}, 60)}</a><!--{if $o[tuijian]==1}-->&nbsp;<img src="source/plugin/mini_pet/images/jian.gif" width='17' height='17'><!--{/if}--><!--{if $o[top]==1}-->&nbsp;<img src="source/plugin/mini_pet/images/zhiding.gif" width='17' height='17'><!--{/if}-->
+				</td>
+                <td>{echo date('Y-m-d H:i',$o[dateline])}</td>
+                <td>
+                    <!--{if empty($o[display])}-->
+                    <span style="color:#F00">{lang mini_pet:weishenhe}</span>
+                    <!--{else}-->
+                    <span style="color:#090">{lang mini_pet:yishenhe}</span>
+		                <!--{if $o[display]==1}-->/ 
+                            <a onclick="showWindow('freshen', 'plugin.php?id=mini_pet&mod=freshen&sid={$o[id]}&formhash={FORMHASH}', 'get', 0)" style="color:red;cursor:pointer">{lang mini_pet:shuaxin}</a>
+							<!--{if $creditc!="0" && $paytypec}--> 
+			                / <a href="javascript:;" onclick="showWindow('zhiding', 'plugin.php?id=mini_pet&mod=zhiding&sid={$o[id]}', 'get', 0)"style="color:orange;">{lang mini_pet:viewzhiding}</a>
+			                <!--{/if}-->
+			                / <a href="plugin.php?id=mini_pet:mini_pet_user&p=yizhaodao&sid={$o[id]}&formhash={FORMHASH}"><!--{if $o[zhuangtai]==2}--><font color="#999">{lang mini_pet:yizhaodao}</font><!--{else}--><font color="blue">{lang mini_pet:xunzhaozhong}</font><!--{/if}--></a>
+			            <!--{/if}-->
+                    <!--{/if}-->
+                </td>
+                <td>
+				    <a href="plugin.php?id=mini_pet:mini_pet_user&amp;p=edit&amp;sid=$o[id]">{lang mini_pet:bianji}</a> <a href="plugin.php?id=mini_pet:mini_pet_user&amp;p=del&amp;sid=$o[id]&formhash={FORMHASH}"onclick="return confirm('{lang mini_pet:querenshanchutishi}')">{lang mini_pet:shanchu}</a>
+				</td>
+            </tr>
+            {/loop}
+        </table>
+    </div>            
+<div style=" width:100%; height:auto; float:left;">{$multir}</div>
+<!--{elseif $p == 'add'||$p == 'add2'}-->
+<!--{template mini_pet:add}-->
+<!--{elseif $p == 'edit'}-->
+<!--{template mini_pet:edit}-->
+<!--{elseif $p == 'favorites'}-->
+<!--{template mini_pet:myfavorites}-->
+<!--{elseif $p == 'consumption'}-->
+<!--{template mini_pet:xfjl}-->
+<!--{elseif $p == 'adminalllist'}-->
+<!--{template mini_pet:adminalllist}-->
+<!--{elseif $p == 'userinfo'}-->
+<!--{template mini_pet:myinfo}-->
+<!--{elseif $p == 'adminpic'}-->
+<!--{template mini_pet:adminpic}-->
+<!--{elseif $p == 'adminpinglun'}-->
+<!--{template mini_pet:adminpinglun}-->
+<!--{elseif $p == 'banner'}-->
+<!--{template mini_pet:banner}-->
+<!--{elseif $p == 'banneradd'}-->
+<!--{template mini_pet:banneradd}-->
+<!--{elseif $p == 'banneredit'}-->
+<!--{template mini_pet:banneredit}-->
+<!--{/if}-->
+<div class="clear"></div>
+{template common/footer} 

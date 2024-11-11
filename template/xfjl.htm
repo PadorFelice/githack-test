@@ -1,0 +1,22 @@
+<table class="wrap_tableb" style="width:100%">
+<tr>
+    <th>{lang mini_pet:mingcheng}</th><th style="width:80px">{lang mini_pet:caozuo}</th><th  style="width:180px">{lang mini_pet:xfjlxiaohaojifen}</th><th style="width:140px">{lang mini_pet:xfjlshijian}</th>
+</tr>
+<!--{if $xiaofeis}-->
+<!--{loop $xiaofeis $xiaofei}-->
+ <tr>
+     <td><a href="{if $html == 1}{$mininame}_$xiaofei[sid].html{else}plugin.php?id=mini_pet&mod=view&sid=$xiaofei[sid]{/if}" target="_blank">{echo cutstr({$xiaofei[title]}, 40)}</a></td>
+     <td><!--{if $xiaofei['xftype']==1}--><font color="#FF0000">{lang mini_pet:xfjlfufeifabu}</font><!--{elseif $xiaofei['xftype']==2}--><font color="#ff9a00">{lang mini_pet:xfjlzizhuzhiding}</font><!--{elseif $xiaofei['xftype']==4}--><font color="#009900">{lang mini_pet:zizhumiaoshen}</font><!--{else}--><font color="#3399FF">{lang mini_pet:xfjlshuaxinpaiqian}</font><!--{/if}--></td>
+     <td><!--{if $xiaofei['pay'] > 0}--><font color="red">-{$xiaofei['pay']}</font> {$xiaofei['moneytype']}<!--{if $xiaofei['day'] > 0}-->(<font color="#FF0000"> {$xiaofei['day']}{lang mini_pet:zhidingtian}</font> )<!--{/if}--><!--{else}-->{lang mini_pet:mianfei}<!--{/if}--></td>
+	 <td>{echo date('Y-m-d H:i',$xiaofei[dateline])}</td>
+ </tr>
+ <!--{/loop}-->
+ <!--{else}-->
+ <tr>
+     <td colspan="5">
+	    {lang mini_pet:zanwu}
+     </td>
+ </tr>
+ <!--{/if}-->
+</table>
+{$multis}

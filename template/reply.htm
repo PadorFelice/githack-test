@@ -1,0 +1,19 @@
+<!--{template common/header}-->
+<h3 class="flb"><em>{lang mini_pet:pinglunhuifu}:{$pl[author]}</em><span><a href="javascript:;" onclick="hideWindow('$_GET['handlekey']');" class="flbc" title="{lang close}">{lang close}</a></span></h3>
+<p style="margin:10px;width:600px">{$pl[message]}</p>
+    <form method="post" action="plugin.php?id=mini_pet&mod=reply&applysubreply=true" name="applyform">
+        <input type="hidden" name="formhash" value="{FORMHASH}" />
+       	<input type="hidden" name="did" value="{$_GET['did']}" />
+       	<input type="hidden" name="sid" value="{$_GET['sid']}" />
+            <div class="tedt" style="margin:10px">
+                <div class="bar">
+                    <!--{eval $seditor = array('propaganda', array('bold', 'color', 'smilies'));}-->
+                    <!--{subtemplate common/seditor}-->
+                </div>
+                <div class="area">
+                    <textarea id="propagandamessage" class="pt" rows="5" name="reply">{$pl[reply]}</textarea>
+                </div>
+            </div>
+        <p class="ptn" style="margin:10px"><button type="submit" name="applysubreply" id="applysubreply" value="true" class="pn pnp" /><strong>{lang mini_pet:pinglunhuifu}</strong></button></p>
+    </form>
+<!--{template common/footer}-->

@@ -1,0 +1,34 @@
+<!--{if $banners}-->
+<style>
+.moduletable-banner{min-width:960px;height:250px;position:relative;margin-bottom:10px;}
+.flexslider{width:100%;height:100%;overflow:hidden;}
+.flexslider .slides > li{display:none;}
+.flexslider .slides img{max-width:100%;display:block;}
+.slides:after{content:".";display:block;clear:both;visibility:hidden;line-height:0;height:0;}
+.flexslider{position:relative;zoom:1;}
+.flexslider .slides{zoom:1;}
+.flex-control-nav{position:absolute;bottom:0;right:0;}
+.flex-control-nav li{display:inline-block;zoom:1;*display:inline;margin-right:10px;margin-bottom:6px;}
+.flex-control-nav li a{display:block;width:18px;height:18px;border-radius:20px;background:#04AEDA;cursor:pointer;text-indent:-9999px;}
+.flex-control-nav li a:hover{background:#F99E0F;border-radius:20px;}
+.flex-control-nav li a.active{cursor:default;background:#F63;border-radius:20px;border:1px solid #f63;}
+</style>
+<script src="source/plugin/mini_pet/js/jquery.min.js"></script>
+<script src="source/plugin/mini_pet/js/jquery.flexslider.min.js"></script>
+<div class="moduletable-banner">
+	<div class="flexslider">
+		<ul class="slides">			
+		    <!--{loop $banners $key $banner}-->
+			<li>
+			<!--{if !empty($banner[url])}-->
+			    <a href="{$banner[url]}" target="_blank"><img src="{$banner[pic]}" style="width:100%;height:250px" title="{$banner[title]}" /></a>
+			<!--{else}-->
+			    <img src="{$banner[pic]}" style="width:100%;height:250px" title="{$banner[title]}" />
+			<!--{/if}-->
+			</li>
+			<!--{/loop}-->
+		</ul>
+	</div>
+</div>
+<script type="text/javascript">JQUERY = jQuery.noConflict(); </script>
+<!--{/if}-->

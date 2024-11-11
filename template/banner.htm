@@ -1,0 +1,30 @@
+<ul class="tb cl">
+    <li {if $p == 'banner'}class="a"{/if}><a href="plugin.php?id=mini_pet:mini_pet_user&p=banner">{lang mini_pet:bannerlist}</a></li>
+    <li {if $p == 'banneradd'}class="a"{/if}><a href="plugin.php?id=mini_pet:mini_pet_user&p=banneradd">{lang mini_pet:banneradd}</a></li>
+</ul>
+<table class="wrap_tableb" width="100%">
+    <tr>
+	    <th width="140">{lang mini_pet:bannertitle}</th>
+		<th>{lang mini_pet:banner}</th>
+		<th>{lang mini_pet:bannertime}</th>
+		<th>{lang mini_pet:caozuo}</th>
+	</tr>
+    {loop $banners $banner}
+    <tr>
+        <td>{$banner['title']}</a></td>
+        <td>
+		    <!--{if !empty($banner[url])}-->
+			    <a href="{$banner['url']}" target="_blank"><img src="{$banner['pic']}" style="width:450px;height:100px;" title="{$banner['title']}"></a>
+            <!--{else}-->
+			   <img src="{$banner['pic']}" onclick="zoom(this, '', 0)" style="width:450px;height:100px;" title="{$banner['title']}">
+			<!--{/if}-->
+		</td>
+        <td>{$banner['dateline']}</td>
+        <td>
+            <a href="plugin.php?id=mini_pet:mini_pet_user&amp;p=banneredit&amp;bid=$banner[id]">{lang mini_pet:bianji}</a>
+            <a href="plugin.php?id=mini_pet:mini_pet_user&amp;p=bannerdel&amp;bid=$banner[id]&formhash={FORMHASH}" onclick="return confirm('{lang mini_pet:quedingshanchu}')">{lang mini_pet:shanchu}</a>
+        </td>
+    </tr>
+    {/loop}
+</table>
+{$multipage}

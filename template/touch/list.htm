@@ -1,0 +1,61 @@
+<!--{template mini_pet:header}-->
+<!--{template mini_pet:touchstyle}-->
+<div style="background-color:#FFF">
+<nav class="sinaHead">
+		<!--{if !empty($plywebname)}--><h2><a class="h_txt" style="width:auto;padding:0 10px" href="{$plywebnameurl}">{$plywebname}</a></h2><!--{/if}-->
+		<ul class="h_nav_items">
+			<li><a href="{if $html == 1}{$mininame}.html{else}plugin.php?id=mini_pet{/if}">{$title}</a></li>
+		</ul>
+</nav>
+<!--{template mini_pet:menubanner}-->
+<!--{template mini_pet:menu}-->
+<div style="margin-top:10px">
+         <form name="search" class="xlwsqsearch"  action="plugin.php?id=mini_pet" method="post">
+            <input type="text" name="key"  value="{$_GET['key']}">
+            <select name="keytype">
+              <option value="0">{lang mini_pet:biaoti}</option>
+              <option value="1"{if $_GET['keytype']==1}selected{/if}>{lang mini_pet:viewxinxibianhao}</option>
+              <option value="2"{if $_GET['keytype']==2}selected{/if}>{lang mini_pet:yonghuming}</option>
+              <option value="3"{if $_GET['keytype']==2}selected{/if}>{lang mini_pet:mohusousuo}</option>
+            </select>
+            <button type="submit">{lang mini_pet:sousuo}</button>
+         </form>
+</div>
+<div class="clear"></div>
+<!--{if $mythreads}-->
+{loop $mythreads $key $mythread}
+                    <div class="ui-item  line-dot-bottom">
+                        <div class="ui-item-right">
+                            <p><!--{if $mythread['price'] >"0"}--><span style="font-size:20px; color:#ff3405;">{$mythread['price']}{lang mini_pet:listyuan}</span><!--{elseif $mythread['price']=="0"}--><span style="font-size:20px; color:#0099FF">{lang mini_pet:mianchoujin}</span><!--{else}--><span style="margin-left:10px;font-size:20px; color:#999900">{lang mini_pet:mianyi}</span><!--{/if}--></p>
+                            <p ><!--{if $mythread['zhuangtai']=="1"}--><span class="s-status_1">{lang mini_pet:xunzhaozhong}</span><!--{else}--><span class="s-status_3">{lang mini_pet:yizhaodao}</span><!--{/if}--></p>
+                            <p>{echo date('Y-m-d',$mythread[updateline])}</p>
+                        </div>
+                        <div class="ui-item-left">
+                            <a href="{if $html == 1}{$mininame}_{$mythread[id]}.html{else}plugin.php?id=mini_pet&mod=view&sid={$mythread[id]}{/if}">
+                                <ul class="app-ul">
+                                    <li class="app-ul-li-img"><img src="{if !empty($mythread[pic])}{$mythread[pic]}{else}source/plugin/mini_pet/images/nopic.jpg{/if}" class="app" /></li>
+                                    <li class="app-ul-li-info">
+                                        <h3 class="app-title"><!--{if $mythread['hr']=="1"}--><span style="color:orange">{lang mini_pet:zhu}</span><!--{else}--><span style="color:green">{lang mini_pet:qiu}</span><!--{/if}-->{$mythread[title]}</h3>
+                                        <p class="app-remark">
+										   <span>{lang mini_pet:listchonglei}<!--{if !empty($mythread['petname'])}--> {$mythread['petname']}<!--{else}-->{$mythread['cate']}<!--{/if}--></span>
+                                        </p>
+                                        <p class="app-remark">
+                                            <span>{lang mini_pet:listquyu}<!--{if !empty($mythread['area'])}--> {$mythread['area']}<!--{else}-->{echo cutstr({$mythread[address]},40)}<!--{/if}--></span>
+                                        </p>
+                                        <p class="app-remark">
+                                            <span>{echo cutstr({$mythread[info]}, 80)}</span>
+                                        </p>
+                                    </li>
+                                </ul>
+                            </a>
+                        </div>
+                    </div>
+<!--{/loop}-->
+	  <!--{else}-->
+{lang mini_pet:zanwu}
+<!--{/if}--> 
+{$multis}
+<!--{if !empty($footad)}--><div style="width:100%;">{$footad}</div><!--{/if}-->
+</div>
+<div class="clear"></div>
+<!--{template mini_pet:footer}-->

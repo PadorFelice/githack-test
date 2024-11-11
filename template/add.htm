@@ -1,0 +1,207 @@
+<script language="javascript">
+function changetype(type){
+ document.getElementById(type).style.display='';
+ if(type=="text"){
+    document.getElementById('file').style.display='none';
+	document.getElementById('url').style.fontWeight='bold'; 
+	document.getElementById('up').style.fontWeight='lighter';
+ }
+ if(type=='file'){
+	document.getElementById('text').style.display='none';
+	document.getElementById('up').style.fontWeight='bold';
+	document.getElementById('url').style.fontWeight='lighter';
+ }
+}
+</script>
+<script type="text/javascript">
+    function validate(theform) {
+	    if(theform.title.value == '') {
+            alert('{lang mini_pet:meiyoubiaoti}');
+			theform.title.focus();
+			return false;
+		}
+		if(theform.info.value == '') {
+		    alert('{lang mini_pet:meiyouinfo}');
+			theform.info.focus();
+			return false;
+		}
+    }
+</script>
+<form action="" method="post" enctype="multipart/form-data" name="applyform" id="applyform" onsubmit="return validate(this)">
+<input type="hidden" name="action" value="save" />
+<input type="hidden" name="referer" value="$_G[referer]">
+<input type="hidden" name="hr" value="{if $p == 'add'}1{else}2{/if}">
+<input type="hidden" name="zhuangtai" value="1">
+<input type="hidden" name="formhash" value="{FORMHASH}" />
+    <table class="wrap_tableb" width="100%">
+        <tr>
+            <td width="100">{lang mini_pet:biaoti}</td>
+            <td><input name="title" type="text" size="40" class="k" id="title" /></td>
+        </tr>
+        <tr>
+            <td>{lang mini_pet:fengmian}</td>
+            <td>
+              <input type="file" id="file" size="30" name="file" style="display:none;" /> 
+              <input type="text" id="text"  size="60" name="pic"/> 
+              <a href="javascript:" id="up" onclick="changetype('file'); return false;">{lang mini_pet:shangchuantupian}</a> | <a href="javascript:" id="url" onclick="changetype('text'); return false;" style="font-weight:bold;">{lang mini_pet:tupianlianjie}
+			</td>
+        </tr>
+        <tr>
+            <td>{lang mini_pet:cate}</td>
+            <td>
+                  <select class="ps" name="cate_1" id="cate_1" onchange="ajaxget('plugin.php?id=mini_pet:select&action=cate&bl=cate_two&lid='+this.value, 'cate_2')" >
+                    <option value=""></option>
+                    <!--{if $cates}-->
+                    <!--{loop $cates $lid $localname}-->
+                    <option value="{$lid}" {if $lid == $cate} selected {/if} >{$localname['subject']}</option>
+                    <!--{/loop}-->
+                    <!--{/if}-->
+                  </select>
+                    <span id="cate_2" name="cate_2">{$catetwoshow}</span>
+                    <input name="petname" id="petname" type="text"/><br/>{lang mini_pet:beizhu1}
+           </td>
+        </tr>
+        <tr>
+            <td>{lang mini_pet:area}(<!--{if $p == 'add'}-->{lang mini_pet:diuchongweizhi}<!--{else}-->{lang mini_pet:shichongweizhi}<!--{/if}-->)</td>
+            <td>
+                <select class="ps" name="area_1" onchange="ajaxget('plugin.php?id=mini_pet:select&action=area&bl=area_two&lid='+this.value, 'area_2')" />
+                  <option value=""></option>
+                  <!--{if $areas}-->
+                  <!--{loop $areas $lid $localname}-->
+                  <option value="{$lid}">{$localname['subject']}</option>
+                  <!--{/loop}-->
+                  <!--{/if}-->
+                </select>
+                  <span id="area_2" name="area_2">{$areatwoshow}</span>
+                  <input name="address" id="address" type="text" size="50"/> 
+            </td>            
+        </tr>
+        <tr>
+            <td>{lang mini_pet:viewxingbie}</td>
+            <td>
+			    <label><input name="xingbie" id="xingbie" type="radio" value="1"/>{lang mini_pet:viewgong}</label>
+			    <label><input name="xingbie" id="xingbie" type="radio" value="2"/>{lang mini_pet:viewmu}</label>
+			    <label><input name="xingbie" id="xingbie" type="radio" value="3"/>{lang mini_pet:viewbuqueding}</label>			
+		   </td>
+        </tr>
+        <tr>
+            <td>{lang mini_pet:viewnianling}</td>
+            <td><input name="nianling" id="nianling" type="text" class="k"/></td>
+        </tr>
+        <tr>
+            <td>{lang mini_pet:viewtizhong}</td>
+            <td><input name="tizhong" id="tizhong" type="text" class="k"/></td>
+        </tr>
+        <tr>
+            <td>{lang mini_pet:viewshengao}</td>
+            <td><input name="shengao" id="shengao" type="text" class="k"/></td>
+        </tr>
+
+        <tr>
+            <td>{lang mini_pet:viewmaose}</td>
+            <td><input name="maose" id="maose" type="text" class="k"/></td>
+        </tr>
+
+        <tr>
+            <td>{lang mini_pet:viewxingge}</td>
+            <td><input name="xingge" id="xingge" type="text" class="k"/></td>
+        </tr>
+
+        <!--{if !empty($diysd[0])}-->
+        <tr>
+            <td>$diysd[0]</td>
+            <td><input name="sd1" type="text"  class="k" size="60"/></td>
+        </tr>
+        <!--{/if}-->
+	    <!--{if !empty($diysd[1])}-->
+        <tr>
+            <td>$diysd[1]</td>
+            <td><input name="sd2" type="text" class="k" size="60"/></td>
+        </tr>
+       <!--{/if}-->
+	   <!--{if !empty($diysd[2])}-->
+        <tr>
+            <td>$diysd[2]</td>
+            <td><input name="sd3" type="text"  class="k" size="60"/></td>
+        </tr>
+       <!--{/if}-->
+	   <!--{if !empty($diysd[3])}-->
+        <tr>
+            <td>$diysd[3]</td>
+            <td><input name="sd4" type="text" class="k" size="60"/></td>
+        </tr>
+       <!--{/if}-->
+	   <!--{if !empty($diysd[4])}-->
+        <tr>
+            <td>$diysd[4]</td>
+            <td><input name="sd5" type="text" class="k"  size="60"/></td>
+        </tr>
+       <!--{/if}-->
+        <tr>
+            <td class="">{lang mini_pet:shangchuantupian}</td>
+            <td style="padding-top:5px">
+                 <!--{template mini_pet:massuppic}-->
+			</td>
+        </tr>
+        <tr>
+            <td class="">{lang mini_pet:info}</td>
+            <td><div class="tedt" style="margin:0 auto;">
+            <div class="bar">
+            <!--{eval $seditor = array('propaganda', array('bold', 'color', 'link', 'img'));}-->
+            <!--{subtemplate common/seditor}-->
+            </div>
+            <div class="area">
+            <textarea id="propagandamessage" class="pt" rows="5" cols="50" name="info"></textarea>
+            </div>
+            </div>
+            </td>
+        </tr>
+        <tr>
+            <td>{lang mini_pet:price}</td>
+            <td><input name="price" type="text" size="10" class="k" />&nbsp; {lang mini_pet:yuan} &nbsp; <!--{if $p == 'add'}--> {lang mini_pet:pricebeizhu}<!--{else}--> {lang mini_pet:pricebeizhu2}<!--{/if}--></td>
+        </tr>  
+        <tr>
+            <td>{lang mini_pet:lianxiziliao}</td>
+            <td>{lang mini_pet:lianxiren} <input name="xingming" type="text" class="k" value="" size="10"/>
+			    {lang mini_pet:tel} <input name="tel" type="text" class="k"  value="" size="15" onkeyup="this.value=this.value.replace(/[^0-9-+()]+/,'');"/>
+			    QQ <input name="qq" type="text" class="k" value="" size="10"onkeyup="value=this.value.replace(/\D+/g,'')"/>
+			    {lang mini_pet:weixin} <input name="weixin" type="text" class="k" value="" size="10"/>
+				<label><input type="checkbox" name="baomi" id="baomi" value="1" checked="checked"/>{lang mini_pet:shifougongkai}</label><br/><font color="red">{lang mini_pet:baomitishi}</font>
+			 </td>
+        </tr>  
+         <!--{if $_G['groupid']=="1"||in_array($_G['uid'], $admins)}-->
+         <tr>
+            <td>{lang mini_pet:benzhantuijian}</td>
+            <td>
+			<label><input name="tuijian" id="tuijian" type="radio" value="0" checked="checked"/>{lang mini_pet:fou}</label>
+			<label><input name="tuijian" id="tuijian" type="radio" value="1"/>{lang mini_pet:shi}</label>
+			</td>
+         </tr>
+         <tr>
+            <td>{lang mini_pet:zhiding}</td>
+            <td>
+			<label><input name="top" id="top" type="radio" value="0" checked="checked"/>{lang mini_pet:fou}</label>
+			<label><input name="top" id="top" type="radio" value="1"/>{lang mini_pet:shi}</label>
+			</td>
+         </tr>
+         <tr>
+            <td>{lang mini_pet:adminpai}</td>
+            <td>
+			<input type="text" name="diynum" size="4" />
+			</td>
+         </tr>
+         <!--{/if}-->
+    </table>
+    <div style="text-align:center; margin:10px auto 0;">
+	 <!--{if $p == 'add'}-->
+	    <!--{if $credit!="0" && $paytype}-->
+		<font color="red">{lang mini_pet:koufeitishi}{$credit}{$moneytype}{lang mini_pet:xianyoujifen}{$paymoney} {$moneytype}</font><br/>
+		<!--{/if}-->
+    <!--{elseif $p == 'add2'}-->
+	    <!--{if $creditb!="0" && $paytypeb}-->
+		<font color="red">{lang mini_pet:koufeitishi}{$creditb}{$moneytypeb}{lang mini_pet:xianyoujifen}{$paymoneyb} {$moneytypeb}</font><br/>
+		<!--{/if}-->
+    <!--{/if}-->
+        <button type="submit" name="applysubmit" id="applysubmit" value="true" class="pcbtn" /><strong>{lang mini_pet:tijiao}</strong></button>
+    </div>
+</form>

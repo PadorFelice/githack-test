@@ -1,0 +1,77 @@
+<style type="text/css">
+.progress{position:relative;padding: 1px;border-radius:3px;margin:60px 0 0 0;}
+.upbar{background-color: green;display:block;width:0%;height:20px;border-radius:3px;}
+.percent{position:absolute;height:20px;display:inline-block;top:3px;left:2%;color:#fff}
+.clearfix:after{visibility:hidden;display:block;font-size:0;content:" ";clear:both;height:0}
+*:first-child+html .clearfix{zoom:1}
+.img_common{width:80px;height:60px;}
+.picinfos .picinfo{display:inline; float:left; margin-right:7px; margin-top:2px; margin-bottom:2px; width:80px; height:102px;}
+.picinfos .picinfo .picdivsize{ width:80px; height:60px; float:left; overflow:hidden}
+.picinfos .picinfo .picdivsize dt span{ width:80px; height:22px; line-height:22px; position:absolute; top:40px; left:0px; text-align:center; background:rgba(0, 0, 0, 0.5) none repeat scroll 0 0 !important;
+filter:Alpha(opacity=50);  background:#000;}
+.picinfos .picinfo .picdivsize dt span b{color:#fff; font-weight:400;position:relative; }
+.picinfos .picinfo .picdivsize{ width:80px; height:60px; position:relative}
+.picinfos .picinfo .picdivsize img{ width:80px; height:60px; }
+.picinfos .picinfo .text{width:80px; padding:2px 0; text-align:center; background:#EEEEEE; float:left}
+.clear{ clear:both;}
+</style>
+      <div class="picinfos" id="picinfo_s">
+        <ul id="ul_pics">
+             <li style="float:left;width:80px;height:60px;border: 1px solid #ddd;margin-bottom:5px"><img src="source/plugin/mini_pet/images/addpic.png" id="upbtn" class="img_common"/></li>
+        </ul>
+	  </div><script src="source/plugin/mini_pet/js/jquery.min.js" type="text/javascript"></script>
+        <script type="text/javascript" src="source/plugin/mini_pet/plupload/plupload.full.min.js"></script>
+        <script type="text/javascript">
+            var uploader = new plupload.Uploader({
+                runtimes: 'html5,flash,silverlight,html4',
+                browse_button: 'upbtn',
+                url: "plugin.php?id=mini_pet:mini_pet_up",
+                flash_swf_url: 'source/plugin/mini_pet/plupload/Moxie.swf',
+                silverlight_xap_url: 'source/plugin/mini_pet/plupload/Moxie.xap',
+                multipart_params: {
+                    formhash: '{FORMHASH}'
+                },
+				filters: {
+					max_file_size: '{$picdx}b',
+					prevent_duplicates : false,
+					mime_types: [
+						 { title : "files", extensions : "gif,jpg,jpeg,png"}
+					]
+				},
+                multi_selection: true,
+                init: {
+                    FilesAdded: function(up, files) {
+                        if (jQuery("#ul_pics").children("li").length > 30) {
+                            alert("{lang mini_pet:tupiantaiduo}");
+                            uploader.destroy();
+                        } else {
+                            var li = '';
+                            plupload.each(files, function(file) {
+                                li += "<li id='" + file['id'] + "'><div class='progress'><span class='upbar'></span><span class='percent'>0%</span></div></li>";
+                            });
+                            jQuery("#ul_pics").prepend(li);
+                            uploader.start();
+                        }
+                    },
+                    UploadProgress: function(up, file) {
+                        var percent = file.percent;
+                        jQuery("#" + file.id).find('.upbar').css({"width": percent + "%"});
+                        jQuery("#" + file.id).find(".percent").text(percent + "%");
+                    },
+                    FileUploaded: function(up, file, info) {
+                        var data = eval("(" + info.response + ")");
+                        jQuery("#" + file.id).html("<input type='hidden' name='filelist[]' value='" + data.pic + "'/><div class='picinfo'><div class='picdivsize'><a href=\"javascript:addPic('"+ data.pic +"')\"><img src='" + data.pic + "'style='width:80px;height=60px'/></a></div><div class='text'><a onclick=delPic('" + data.pic + "','" + file.id + "')>{lang mini_pet:shanchu}</a></div></div>");
+                    },
+                    Error: function(up, err) {
+                        alert(err.message);
+                    }
+                }
+            });
+            uploader.init();
+           function delPic(pic, file_id) {
+              jQuery("#" + file_id).remove()
+			  showUploadBtn();
+           }
+        </script>
+<script type="text/javascript">JQUERY = jQuery.noConflict(); </script>
+<div class="clear"></div>

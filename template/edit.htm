@@ -1,0 +1,237 @@
+<form method="post" enctype="multipart/form-data" action="" name="applyformx" onsubmit="return validate(this)">
+<input type="hidden" name="formhash" value="{FORMHASH}" />
+    <table  class="wrap_tableb" width="100%">
+		<!--{if $_G['groupid']=="1" }-->
+        <tr>
+            <td>{lang mini_pet:faburen}</td>
+            <td>$active[author]</td>
+        </tr>  
+		<!--{/if}-->
+        <tr>
+            <td width="100">{lang mini_pet:biaoti}</td>
+            <td>
+			    <input name="title" type="text" size="40" class="k" id="title"  value="{$active[title]}"/>
+			    <a href="{if $html == 1}{$mininame}_$id.html{else}plugin.php?id=mini_pet&mod=view&sid={$_GET['sid']}{/if}" target="_blank">{lang mini_pet:chakan}</a>
+			</td>
+        </tr>
+        <tr> 
+            <td>{lang mini_pet:fengmian}</td>
+            <td>
+			     <input type="file" name="file" size="29" value="{$active[pic]}" accept="image/gif,image/jpeg,image/jpg,image/png"/>
+				 <!--{if $active[pic]}-->  
+				 <br/><img src="{$active[pic]}" width="240" height="150" onclick="zoom(this, '', 0)" title="{$active[title]}"/>
+			     </br/><input name="pic" type="text" id="pic" value="{$active[pic]}" size="80"  />
+				 <!--{/if}-->
+			</td>
+        </tr>
+        <tr>
+            <td>{lang mini_pet:cate}</td>
+            <td>
+                <select class="ps" name="cate_1" id="cate_1" onchange="ajaxget('plugin.php?id=mini_pet:select&action=cate&bl=cate_two&lid='+this.value, 'cate_2')" >
+                  <option value=""></option>
+                  <!--{if $cates}-->
+                  <!--{loop $cates $lid $localname}-->
+                  <option value="{$lid}" {if $lid == $cate} selected {/if} >{$localname['subject']}</option>
+                  <!--{/loop}-->
+                  <!--{/if}-->
+               </select>
+               <span id="cate_2" name="cate_2">{$catetwoshow}</span>
+               <input name="petname" id="petname" value="$active[petname]" type="text" size="20"/>
+			   <br/>{lang mini_pet:beizhu1}
+           </td>
+        </tr>
+        <tr>
+            <td>{lang mini_pet:area}(<!--{if $active['hr'] == '1'}-->{lang mini_pet:diuchongweizhi}<!--{else}-->{lang mini_pet:shichongweizhi}<!--{/if}-->)</td>
+            <td>
+               <select class="ps" name="area_1" onchange="ajaxget('plugin.php?id=mini_pet:select&action=area&bl=area_two&lid='+this.value, 'area_2')" />
+                 <option value=""></option>
+                 <!--{if $areas}-->
+                 <!--{loop $areas $lid $localname}-->
+                 <option value="{$lid}" {if $lid == $areaid} selected {/if} >{$localname['subject']}</option>
+                 <!--{/loop}-->
+                 <!--{/if}-->
+               </select>
+               <span id="area_2" name="area_2">{$areatwoshow}</span>
+               <input name="address" id="address" value="$active[address]" type="text" size="50"/>
+			   <br/>{lang mini_pet:beizhu1}
+           </td>
+        </tr>
+        <tr>
+            <td>{lang mini_pet:viewxingbie}</td>
+            <td>
+			    <label><input name="xingbie" id="xingbie" type="radio" value="1" {if $active[xingbie]==1} checked="checked"{/if}/>{lang mini_pet:viewgong}</label>
+			    <label><input name="xingbie" id="xingbie" type="radio" value="2" {if $active[xingbie]==2} checked="checked"{/if}/>{lang mini_pet:viewmu}</label>
+			    <label><input name="xingbie" id="xingbie" type="radio" value="3" {if $active[xingbie]==3} checked="checked"{/if}/>{lang mini_pet:viewbuqueding}</label>			
+		   </td>
+        </tr>
+        <tr>
+            <td>{lang mini_pet:viewnianling}</td>
+            <td><input name="nianling" id="nianling"  value="{$active[nianling]}" type="text" class="k"/></td>
+        </tr>
+        <tr>
+            <td>{lang mini_pet:viewtizhong}</td>
+            <td><input name="tizhong" id="tizhong"  value="{$active[tizhong]}" type="text" class="k"/></td>
+        </tr>
+        <tr>
+            <td>{lang mini_pet:viewshengao}</td>
+            <td><input name="shengao" id="shengao" value="{$active[shengao]}" type="text" class="k"/></td>
+        </tr>
+        <tr>
+            <td>{lang mini_pet:viewmaose}</td>
+            <td><input name="maose" id="maose" value="{$active[maose]}" type="text" class="k"/></td>
+        </tr>
+        <tr>
+            <td>{lang mini_pet:viewxingge}</td>
+            <td><input name="xingge" id="xingge" value="{$active[xingge]}" type="text" class="k"/></td>
+        </tr>
+	    <!--{if !empty($diysd[0])}-->
+        <tr>
+            <td>$diysd[0]</td>
+            <td><input name="sd1" type="text"  class="k" id="sd1"  size="60" value="{$active[sd1]}" /></td>
+        </tr>
+        <!--{/if}-->
+	    <!--{if !empty($diysd[1])}-->
+        <tr>
+            <td>$diysd[1]</td>
+            <td><input name="sd2" type="text" class="k" id="sd2"  size="60" value="{$active[sd2]}"/></td>
+        </tr>
+       <!--{/if}-->
+	   <!--{if !empty($diysd[2])}-->
+        <tr>
+            <td>$diysd[2]</td>
+            <td><input name="sd3" type="text"  class="k" id="sd3"  size="60" value="{$active[sd3]}"/></td>
+        </tr>
+       <!--{/if}-->
+	   <!--{if !empty($diysd[3])}-->
+        <tr>
+            <td>$diysd[3]</td>
+            <td><input name="sd4" type="text" class="k" id="sd4"  size="60" value="{$active[sd4]}"/></td>
+        </tr>
+       <!--{/if}-->
+	   <!--{if !empty($diysd[4])}-->
+        <tr>
+            <td>$diysd[4]</td>
+            <td><input name="sd5" type="text" class="k" id="sd5"  size="60" value="{$active[sd5]}"/></td>
+        </tr>
+       <!--{/if}-->
+        <tr>
+            <td class="">{lang mini_pet:shangchuantupian}</td>
+            <td style="padding-top:5px">
+             <!--{if $psers}-->
+             <style>
+             .picinfos .picinfo{display:inline; float:left; margin-right:7px; margin-top:2px; margin-bottom:2px; width:80px; height:102px;}
+             .picinfos .picinfo .picdivsize{ width:80px; height:60px; float:left; overflow:hidden}
+             .picinfos .picinfo .picdivsize dt span{ width:80px; height:22px; line-height:22px; position:absolute; top:40px; left:0px; text-align:center; background:rgba(0, 0, 0, 0.5) none repeat scroll 0 0 !important;filter:Alpha(opacity=50);  background:#000;}
+             .picinfos .picinfo .picdivsize dt span b{color:#fff; font-weight:400;position:relative; }
+             .picinfos .picinfo .picdivsize{ width:80px; height:60px; position:relative}
+             .picinfos .picinfo .picdivsize img{ width:80px; height:60px; }
+             .picinfos .picinfo .text{width:80px; padding:2px 0; text-align:center; background:#EEEEEE; float:left}
+             </style>
+                <div class="picinfos cl" id="picinfo_s">
+				  <!--{loop $psers $cuesr}-->
+                   <div class="picinfo">
+              		<div class="picdivsize"><img src="$cuesr['img']" border="0" width="80" height="60"/></div>
+                    <div class="text"><a href="javascript:delpic('$cuesr['img']')">{lang mini_pet:shanchu}</a>
+					</div>
+                   </div>
+                  <!--{/loop}-->
+                </div>
+                <div id="divTxt" style="display:none" >
+                  {loop $psers $cuesr}
+                     <input type="hidden" value="$cuesr['img']" name="filelist[]" />
+                  {/loop}
+                </div>
+                <!--{/if}-->
+				<!--{template mini_pet:massuppic}-->
+			</td>
+        </tr>
+        <tr>
+            <td class="">{lang mini_pet:info}</td>
+            <td><div class="tedt" style="margin:0 auto;">
+            <div class="bar">
+            <!--{eval $seditor = array('propaganda', array('bold', 'color', 'link', 'img'));}-->
+            <!--{subtemplate common/seditor}-->
+            </div>
+            <div class=area>
+            <textarea id="propagandamessage" class="pt" rows="15" cols="50" name="info">{$active[info]}</textarea>
+            </div>
+            </div>
+            </td>
+        </tr>
+        <tr>
+            <td>{lang mini_pet:price}</td>
+            <td><input name="price" type="text" size="10" class="k" value="$active[price]" />&nbsp;{lang mini_pet:yuan}  &nbsp;
+			<!--{if $active['hr'] == '1'}-->{lang mini_pet:pricebeizhu}<!--{else}-->{lang mini_pet:pricebeizhu2}<!--{/if}--></td>
+        </tr>  
+        <tr>
+            <td>{lang mini_pet:lianxiziliao}</td>
+            <td>{lang mini_pet:lianxiren}
+			    <input name="xingming" type="text" class="k" value="$active[xingming]" size="10"/>
+			    {lang mini_pet:tel}
+				<input name="tel" type="text" class="k"  value="$active[tel]" size="15" onkeyup="this.value=this.value.replace(/[^0-9-+()]+/,'');"/>
+			    QQ
+				<input name="qq" type="text" class="k" value="$active[qq]" size="10" onkeyup="value=this.value.replace(/\D+/g,'')"/>
+		        {lang mini_pet:weixin}
+				<input name="weixin" type="text" class="k"  value="$active[weixin]" size="15"/>
+				<label><input type="checkbox" name="baomi" id="baomi" value="1" {if $active[baomi]==1} checked="checked"{/if}/>{lang mini_pet:shifougongkai}</label><br/><font color="red">{lang mini_pet:baomitishi}</font>
+			 </td>
+        </tr>  
+        <tr>
+            <td>{lang mini_pet:xinxizhuangtai}</td>
+            <td>
+			    <label><input name="zhuangtai" id="zhuangtai" type="radio" value="1" {if $active[zhuangtai]==1} checked="checked"{/if}/>{lang mini_pet:xunzhaozhong}</label>
+			    <label><input name="zhuangtai" id="zhuangtai" type="radio" value="2" {if $active[zhuangtai]==2} checked="checked"{/if}/>{lang mini_pet:yizhaodao}</label>
+				<br/><font color="red">{lang mini_pet:zhuangtaixinxitishi}</font>
+			</td>
+        </tr>  
+        <!--{if $_G['groupid']=="1"||in_array($_G['uid'], $admins)}-->
+        <tr>
+            <td>{lang mini_pet:benzhantuijian}</td>
+            <td>
+			<label><input name="tuijian" id="tuijian" type="radio" value="0" {if $active[tuijian]==0} checked="checked"{/if}/>{lang mini_pet:fou}</label>
+			<label><input name="tuijian" id="tuijian" type="radio" value="1" {if $active[tuijian]==1} checked="checked"{/if}/>{lang mini_pet:shi}</label>
+			</td>
+        </tr>
+        <tr>
+            <td>{lang mini_pet:zhiding}</td>
+            <td>
+			<label><input name="top" id="top" type="radio" value="0" {if $active[top]==0} checked="checked"{/if}/>{lang mini_pet:fou}</label>
+			<label><input name="top" id="top" type="radio" value="1" {if $active[top]==1} checked="checked"{/if}/>{lang mini_pet:shi}</label>{lang mini_pet:adminzhiding}
+			</td>
+        </tr>
+        <tr>
+            <td>{lang mini_pet:adminpai}</td>
+            <td>
+			<input type="text" name="diynum" size="4" value="$active[diynum]"/>
+			</td>
+        </tr>
+        <!--{/if}-->
+    </table>
+    <div style="text-align:center; margin:10px auto 0;">
+        <button type="submit" name="applysubmit" id="applysubmit" value="true" class="pcbtn" /><strong>{lang mini_pet:tijiao}</strong></button>
+    </div>
+</form>    
+<script type="text/javascript">
+	function delpic(imgsrc){
+		document.getElementById("picinfo_s").innerHTML="";
+		var board = document.getElementById("divTxt");
+		var s="";
+		var img_inputs=document.getElementsByName("filelist[]");
+		var obj=null;
+		for(var i=0;i<img_inputs.length;i++){
+			if(img_inputs[i].value==imgsrc){
+				obj=img_inputs[i]
+				
+			}else{
+                s+="<div class=\"picinfo\">"+
+						"<div class=\"picdivsize\"><img src=\""+img_inputs[i].value+"\" border=\"0\" /></div>"+
+						"<div class=\"text\"><a href=\"javascript:delpic('"+img_inputs[i].value+"')\">{lang mini_pet:shanchu}</a></div>"+
+						"</div>";
+			}
+		}
+		if(obj!=null)
+		board.removeChild(obj);
+		document.getElementById("picinfo_s").innerHTML=s;
+		ajaxget('plugin.php?id=mini_pet&mod=delpic&formhash={FORMHASH}&picsrc='+imgsrc, 'delpic_s');
+	}
+</script>

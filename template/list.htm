@@ -1,0 +1,199 @@
+<!--{template common/header}-->
+<!--{template mini_pet:style}-->
+<div id="pt" class="bm cl">
+    <div class="z">
+        <a href="./" class="nvhm" title="{lang homepage}">$_G[setting][bbname]</a><em>&raquo;</em>
+		<a href="{if $html == 1}{$mininame}.html{else}plugin.php?id=mini_pet{/if}">{$title}</a>
+    </div>
+</div>
+<div class="clear"></div>
+<!--{template mini_pet:menubanner}-->
+<!--{template mini_pet:menu}-->
+<div class="list-nav software"> 
+  <div class="tags"> 
+     <div class="yui3-g type"> 
+      <div style="float:right;margin:6px;">
+         <form name="search" class="xlwsqsearch"  action="plugin.php?id=mini_pet" method="post">
+            <input type="text" name="key"  value="{$_GET['key']}">
+            <select name="keytype">
+              <option value="0">{lang mini_pet:biaoti}</option>
+              <option value="1"{if $_GET['keytype']==1}selected{/if}>{lang mini_pet:viewxinxibianhao}</option>
+              <option value="2"{if $_GET['keytype']==2}selected{/if}>{lang mini_pet:yonghuming}</option>
+              <option value="3"{if $_GET['keytype']==3}selected{/if}>{lang mini_pet:mohusousuo}</option>
+            </select>
+            <button type="submit">{lang mini_pet:sousuo}</button>
+			<a class="btn" href="{if $html == 1}{$mininame}_user_add2.html{else}plugin.php?id=mini_pet:mini_pet_user&p=add2{/if}" target="_blank" style="float:right;margin-left:10px;">{lang mini_pet:fabuzhaolingxinxi}</a>
+			<a class="btn" href="{if $html == 1}{$mininame}_user_add.html{else}plugin.php?id=mini_pet:mini_pet_user&p=add{/if}" target="_blank" style="float:right;margin-left:10px;">{lang mini_pet:fabuxunchongxinxi}</a>
+         </form>
+      </div>
+      <div class="yui3-u order-type">
+       <img src="source/plugin/mini_pet/images/list.gif"> &nbsp;{lang mini_pet:listgongyouxinxi} &nbsp;&nbsp;
+       <a href="{if $html == 1}{$mininame}_list_{$cate_id}_{$sd}_{$area_id}_{$s_area_id}_0_{$money}_{$hr}.html{else}plugin.php?id=mini_pet&a={$cate_id}&b={$sd}&bc=$area_id&sc=$s_area_id&z=0&c=$money&hr={$hr}{/if}"{if $_GET['z']==0}class="btn"style="color:#fff"{/if}>{lang mini_pet:listquanbu}</a> &nbsp;&nbsp;
+	   <a href="{if $html == 1}{$mininame}_list_{$cate_id}_{$sd}_{$area_id}_{$s_area_id}_1_{$money}_{$hr}.html{else}plugin.php?id=mini_pet&a={$cate_id}&b={$sd}&bc=$area_id&sc=$s_area_id&z=1&c=$money&hr={$hr}{/if}"{if $_GET['z']==1}class="btn"style="color:#fff"{/if}>{lang mini_pet:xunzhaozhong}</a> &nbsp;&nbsp;
+	   <a href="{if $html == 1}{$mininame}_list_{$cate_id}_{$sd}_{$area_id}_{$s_area_id}_2_{$money}_{$hr}.html{else}plugin.php?id=mini_pet&a={$cate_id}&b={$sd}&bc=$area_id&sc=$s_area_id&z=2&c=$money&hr={$hr}{/if}"{if $_GET['z']==2}class="btn"style="color:#fff"{/if}>{lang mini_pet:yizhaodao}</a>
+      </div> 
+     </div> 
+   </div> 
+</div>
+<!--{if $style==1}--><!--zongxiang-->
+<div id="ct" class="wp cl ct2">
+    <!--left-->
+    <div class="mn bm cl" style="float:left;border-radius:3px;margin-bottom:5px;border:1px solid #e6e6e6;min-width:635px">
+         <div class="bm_c">
+             <div class="showLeftList">
+			    <div class="listPagBox">		
+				    <dl>
+                    <!--{if $mythreads}-->
+                    <!--{loop $mythreads $key $mythread}-->					
+					<dd class="listItem clearfix" onmouseover="this.style.backgroundColor='#f8f8f8'" onmouseout="this.style.backgroundColor='#ffffff'">
+                        <div id="minilistleft">	
+						      <div class="picBox">
+						         <a href="{if $html == 1}{$mininame}_{$mythread[id]}.html{else}plugin.php?id=mini_pet&mod=view&sid={$mythread[id]}{/if}" target="_blank"> <img alt="{$mythread[title]}" title="{$mythread[title]}" src="{if !empty($mythread[pic])}{$mythread[pic]}{else}{$defaultpic}{/if}" width='130' height='100'/></a> 
+						      </div>
+						</div> 
+                        <div id="minilistright">
+						       <div class="price"><!--{if $mythread['price'] >"0"}--><span class="number">{$mythread['price']}{lang mini_pet:listyuan}</span><!--{elseif $mythread['price']=="0"}-->{lang mini_pet:mianchoujin}<!--{else}-->{lang mini_pet:mianyi}<!--{/if}--></div>
+						       <div class="acreage"><!--{if $mythread['zhuangtai']=="1"}--><span class="s-status_1">{lang mini_pet:xunzhaozhong}</span><!--{else}--><span class="s-status_3">{lang mini_pet:yizhaodao}</span><!--{/if}--></div>
+						       <div class="acreage">{echo date('Y-m-d',$mythread[updateline])}</div>
+					    </div> 
+                        <div id="minilistmain">
+							      <h3 class="name">
+								      <!--{if $mythread[hr]==2}--><font color="green">{lang mini_pet:qiu}</font><!--{else}--><font color="orange">{lang mini_pet:zhu}</font><!--{/if}--><a href="<!--{if $html == 1}-->{$mininame}_{$mythread[id]}.html{else}plugin.php?id=mini_pet&mod=view&sid={$mythread[id]}{/if}" title="{$mythread[title]}" target="_blank">{echo cutstr({$mythread[title]}, 96)}</a>
+							          <!--{if $mythread['tuijian']=="1"}--><img src="source/plugin/mini_pet/images/jian.gif" class='img' width='17' height='17'title="{lang mini_pet:tuijian}"><!--{/if}-->
+							          <!--{if $mythread['top']=="1"}--><img src="source/plugin/mini_pet/images/zhiding.gif" class='img' width='17' height='17' title="{lang mini_pet:zhiding}"><!--{elseif $mythread['topdateline']!="0"}--><img src="source/plugin/mini_pet/images/xiaofeizhiding.gif" class='img' width='17' height='17' title="{lang mini_pet:zizhuzhiding}"><!--{/if}-->
+							          <!--{if $mythread['piccount']!="0"}--><img src="source/plugin/mini_pet/images/dt.gif" class='img' width='17' height='17' title="$mythread['piccount']{lang mini_pet:listzhangtu}"><!--{/if}-->
+							      </h3>
+							      <div class="item">{lang mini_pet:listchonglei}<!--{if !empty($mythread['petname'])}--> {$mythread['petname']}<!--{else}-->{$mythread['cate']}<!--{/if}-->
+								  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{lang mini_pet:listquyu}<!--{if !empty($mythread['area'])}--> {$mythread['area']}<!--{else}-->{echo cutstr({$mythread[address]},40)}<!--{/if}-->
+								  </div>
+							      <div style="margin-top:5px;font-size:12px;height:52px; overflow:hidden;">
+							          {$mythread['info']}
+							      </div>
+						</div> 
+					</dd>
+                    <!--{/loop}-->
+                    <!--{else}-->
+					<dd class="listItem clearfix">{lang mini_pet:zanwu}</dd>
+                    <!--{/if}-->				
+			       </dl>
+			    </div>
+           </div>
+           {$multis}
+         </div>
+    </div>
+    <!--left-->
+    <!--right-->
+    <div class="sd" style="float:right;border-radius:3px;background:#FFF;margin-bottom:5px;">    
+        <!-- tuijian -->
+        <div class="u-lp-s-box">
+            <div class="u-lp-s-title">
+                <h3> {lang mini_pet:tuijianxinxi}</h3>
+            </div>
+            <div class="u-lp-s-con">
+                <ul class="u-tab_list">
+				    <!--{if $tuijians}-->
+				    <!--{loop $tuijians $key $tuijian}-->
+                    <li class="z-c">
+                        <div class="u-tab_list_img">
+                            <a href="<!--{if $html == 1}-->{$mininame}_{$tuijian[id]}.html{else}plugin.php?id=mini_pet&mod=view&sid={$tuijian[id]}{/if}" title="{$tuijian[title]}" target="_blank"><img src="{if !empty($tuijian[pic])}{$tuijian[pic]}{else}{$defaultpic}{/if}" width="50" height="50" /></a>
+                        </div>
+                        <div class="u-tab_list_txt">
+                            <p style="height:20px;overflow: hidden;">
+                                <a href="{if $html == 1}{$mininame}_{$tuijian[id]}.html{else}plugin.php?id=mini_pet&mod=view&sid={$tuijian[id]}{/if}" title="{$tuijian[title]}"  target="_blank">{$tuijian[title]}</a>
+                            </p>
+                            <p>
+								<!--{if !empty($tuijian['petname'])}-->  {$tuijian['petname']}<!--{else}-->{$tuijian['cate']}<!--{/if}-->
+                            </p>
+                        </div>
+                    </li>
+					<!--{/loop}-->
+                    <!--{else}-->
+                    {lang mini_pet:zanwu}    
+                    <!--{/if}-->
+                </ul>
+            </div>
+        </div>
+        <!-- /tuijian -->
+        <!-- hot -->
+        <div class="u-lp-s-box">
+            <div class="u-lp-s-title">
+                 <h3>{lang mini_pet:remenxinxi}</h3>
+            </div>
+            <div class="u-lp-s-con">
+                 <ul class="u-tab_list">
+					  <!--{if $hots}-->
+					  <!--{loop $hots $key $hot}--> 
+                      <li class="z-c">
+                          <div class="u-tab_list_img">
+                              <a href="{if $html == 1}{$mininame}_{$hot[id]}.html{else}plugin.php?id=mini_pet&mod=view&sid={$hot[id]}{/if}" title="{$hot[title]}" target="_blank"><img src="{if !empty($hot[pic])}{$hot[pic]}{else}{$defaultpic}{/if}" width="50" height="50" /></a>
+                          </div>
+                          <div class="u-tab_list_txt">
+                              <p style="height:20px;overflow: hidden;">
+                                  <a href="{if $html == 1}{$mininame}_{$hot[id]}.html{else}plugin.php?id=mini_pet&mod=view&sid={$hot[id]}{/if}" title="{$hot[title]}" target="_blank">{$hot[title]}</a>
+                              </p>
+                              <p>
+								   <!--{if !empty($hot['petname'])}--> {$hot['petname']}<!--{else}-->{$hot['cate']}<!--{/if}-->
+                              </p>
+                          </div>
+                      </li>
+					  <!--{/loop}-->
+                      <!--{else}-->
+                      {lang mini_pet:zanwu}  
+                      <!--{/if}-->
+                 </ul>
+            </div>
+        </div>
+        <!-- /hot -->
+    </div>
+    <!--right-->
+</div>
+<!--{else}-->
+<!--style2--><!--hengxiang-->
+<div id="minicontainer" style="margin-bottom:10px">
+    <div class="style2list">
+        <div class="bottom-list detail-list">
+            <!--{if $mythreads}-->
+            <!--{loop $mythreads $key $mythread}-->	
+            <div class="list-item">
+			    <!--{if $mythread[top]==1}-->
+				<div class="zhidinghuotuijian">
+                    <div class="zhiding"></div>
+				</div>
+				<!--{/if}-->
+                <div class="item">
+                    <a href="{if $html == 1}{$mininame}_{$mythread[id]}.html{else}plugin.php?id=mini_pet&mod=view&sid={$mythread[id]}{/if}" target="_blank" class="shop-item-pic">
+                        <img src="{if !empty($mythread[pic])}{$mythread[pic]}{else}{$defaultpic}{/if}" title="{$mythread[title]}" alt="{$mythread[title]}">
+                    </a>
+                    <div class="item-info">
+                        <a href="{if $html == 1}{$mininame}_{$mythread[id]}.html{else}plugin.php?id=mini_pet&mod=view&sid={$mythread[id]}{/if}" target="_blank" class="shop-info shop-name">
+                        <span class="shop-name-desc" title="{$mythread[title]}"><!--{if $mythread[hr]==2}--><font color="green">{lang mini_pet:qiu}</font><!--{else}--><font color="orange">{lang mini_pet:zhu}</font><!--{/if}-->{$mythread[title]}</span>
+                        </a>
+                        <div class="comment-info">
+                            <span style="color:#FF0000;font-weight:bold;"><!--{if $mythread['price'] >"0"}-->{$mythread['price']}{lang mini_pet:listyuan}<!--{elseif $mythread['price']=="0"}-->{lang mini_pet:mianchoujin}<!--{else}-->{lang mini_pet:mianyi}<!--{/if}--></span>
+                            <span class="shop-comment"><!--{if $mythread['zhuangtai']=="1"}--><span class="s-status_1">{lang mini_pet:xunzhaozhong}</span><!--{else}--><span class="s-status_3">{lang mini_pet:yizhaodao}</span><!--{/if}--></span>
+                        </div>
+                        <div class="area-info">
+                                <span class="region-name" title="{$mythread['area']}{$mythread[address]}"><!--{if !empty($mythread['area'])}--> {$mythread['area']}<!--{else}-->{echo cutstr({$mythread[address]},20)}<!--{/if}--></span>
+                                <span class="maincate-name"><!--{if !empty($mythread['petname'])}--> {$mythread['petname']}<!--{else}-->{$mythread['cate']}<!--{/if}--></span>
+                        </div>
+                        <div class="avg" title="{$mythread[info]}">
+                             {echo cutstr({$mythread[info]},65)}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--{/loop}-->
+            <!--{else}-->
+			<div class="list-item">{lang mini_pet:zanwu}</div>
+            <!--{/if}-->
+	    </div>
+        <div style='margin:10px 0;'>{$multis}</div>
+    </div>
+</div>
+<!--style1-->
+<!--{/if}-->
+<!--{if $footad}-->
+<div style="width:100%; margin:5px auto;overflow:hidden;">{$footad}</div>
+<!--{/if}-->
+<div class="clear"></div>
+<!--{template common/footer}-->

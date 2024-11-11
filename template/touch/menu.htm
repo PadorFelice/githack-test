@@ -1,0 +1,150 @@
+<style>
+.topmenu{width:100%;font-size:16px;}
+.topmenu dt{width:25%;height:50px;overflow: hidden;float:left;}
+.selectlist{width:100%;height:auto;box-sizing: border-box;background:#fff;}
+.select_textdiv{height:4rem;width:100%;line-height: 4rem;text-align: center;border-bottom: 1px solid #e3e3e3;position:relative;border-left:2px solid -webkit-linear-gradient(red, blue);}
+.select_textul{width:100%;line-height: 3rem;box-sizing: border-box;display: none;width:1000px;overflow-y: scroll;}
+.select_first_ul{z-index: 9999;width: 100%;height:3000px;background: #fff;position: absolute;box-sizing: border-box;left: 0;}
+.select_first_ul>li{padding: 0 0.5rem;box-sizing: border-box;}
+.select_first_ul>li>p{width: 50%;padding: 0 1rem;box-sizing: border-box;border-bottom:1px #e3e3e3 solid;}
+.focus>p{border-bottom:1px {$mobilemenubgcolor} solid !important;color:{$mobilemenubgcolor};}
+.focusb>p{border-bottom:1px {$mobilemenubgcolor} solid !important;color:{$mobilemenubgcolor};}
+.select_second_ul{width: 50%;position: absolute;right: 0px;top: 0;background: #fff;display: none;box-sizing: border-box;padding-left: 0.5rem;z-index: 9999;}
+.select_second_ul>li{padding: 0 0.5rem;box-sizing: border-box;}
+.down{position: absolute;top: 0;right: 0.5rem;display: inline-block;width:1rem;height:100%;}
+.down img{width:1rem;margin-top: 1rem;}
+.paction{padding:0 1rem;}
+.bottomline{border-bottom:1px #e3e3e3 solid;}
+.divfocus::after{position: absolute;bottom:0;left:46%;border-bottom:0.5rem solid {$mobilemenubgcolor};border-left:0.5rem solid transparent;border-right:0.5rem solid transparent;content: "";}
+</style>
+<script src="source/plugin/mini_pet/js/wap-menudown.js" type="text/javascript"></script>	
+		<dl class="topmenu">
+			<dt>
+				<div class="selectlist">
+					<div class="select_textdiv">
+						<p class="s_text">{if $sd >'0'}{$mcateb['subject']}{elseif $cate_id>'0'}{$mcate['subject']}{else}{lang mini_pet:cate}{/if}</p><span class="down"><img src="source/plugin/mini_pet/images/down.png"></span>
+					</div>
+					<div class="select_textul">
+						<ul class="select_first_ul">
+						    <a href="{if $html == 1}{$mininame}_list_0_0_{$area_id}_{$s_area_id}_{$zhuangtai}_{$money}_{$hr}.html{else}plugin.php?id=mini_pet&a=0&b=0&bc=$area_id&sc=$s_area_id&z={$zhuangtai}&c={$money}&hr={$hr}{/if}">
+						      <li {if $_GET['a']<=0} class="focusb" style="margin:0 0.5rem"{else}class="bottomline" style="margin:0 0.5rem"{/if}>
+								<p style="padding-left:12px;"> {lang mini_pet:menuquanbu}</p>
+							  </li>
+							</a>
+							<!--{loop $typecatedata $id $type}-->
+                            <!--{if $upidcatedata[$type[id]]}-->
+							<li {if $_GET['a']==$type['id']} class="focus" {/if}>
+								<p><!--{if $upidcatedata[$type[id]]}-->{$type['subject']}<!--{else}--><a href="{if $html == 1}{$mininame}_list_{$type['id']}_0_{$area_id}_{$s_area_id}_{$zhuangtai}_{$money}_{$hr}.html{else}plugin.php?id=mini_pet&a={$type['id']}&b=0&bc=$area_id&sc=$s_area_id&z={$zhuangtai}&c={$money}&hr={$hr}{/if}">{$type['subject']}</a><!--{/if}--></p>
+								<ul class="select_second_ul">
+								    <a href="{if $html == 1}{$mininame}_list_{$type['id']}_0_{$area_id}_{$s_area_id}_{$zhuangtai}_{$money}_{$hr}.html{else}plugin.php?id=mini_pet&a={$type['id']}&b=0&bc=$area_id&sc=$s_area_id&z={$zhuangtai}&c={$money}&hr={$hr}{/if}">
+									  <li {if $_GET['b']<=0} style="border-bottom:1px {$mobilemenubgcolor} solid !important;color:{$mobilemenubgcolor};"{else}style="border-bottom:1px #eaeaea solid"{/if}>{lang mini_pet:menuquanbu}</li>
+									</a>
+								    <!--{loop $upidcatedata[$type[id]] $upid}-->
+									<a href="{if $html == 1}{$mininame}_list_{$type['id']}_{$upid['id']}_{$area_id}_{$s_area_id}_{$zhuangtai}_{$money}_{$hr}.html{else}plugin.php?id=mini_pet&a={$type['id']}&b={$upid['id']}&bc=$area_id&sc=$s_area_id&z={$zhuangtai}&c={$money}&hr={$hr}{/if}">
+									  <li  {if $_GET['b']==$upid['id']} style="border-bottom:1px {$mobilemenubgcolor} solid !important;color:{$mobilemenubgcolor};"{else}style="border-bottom:1px #eaeaea solid"{/if}>{$upid[subject]}</li>
+									</a>
+									<!--{/loop}-->	
+								</ul>
+							</li>
+                            <!--{else}-->
+						    <a href="{if $html == 1}{$mininame}_list_{$type['id']}_0_{$area_id}_{$s_area_id}_{$zhuangtai}_{$money}_{$hr}.html{else}plugin.php?id=mini_pet&a={$type['id']}&b=0&bc=$area_id&sc=$s_area_id&z={$zhuangtai}&c={$money}&hr={$hr}{/if}">
+						      <li class="bottomline" style="margin:0 0.5rem;{if $_GET['a']==$type['id']}border-bottom:1px {$mobilemenubgcolor} solid !important;color:{$mobilemenubgcolor};{/if}" >
+								<p style="padding-left:12px;"> {$type['subject']}</p>
+							  </li>
+							</a>
+                            <!--{/if}-->
+							<!--{/loop}-->
+						</ul>
+					</div>
+				</div>	
+			</dt>
+			<dt>
+				<div class="selectlist">
+					<div class="select_textdiv">
+						<p class="s_text">{if $s_area_id>'0'}{$mareab['subject']}{elseif $area_id >'0'}{$marea['subject']}{else}{lang mini_pet:area}{/if}</p><span class="down"><img src="source/plugin/mini_pet/images/down.png"></span>
+					</div>
+					<div class="select_textul">
+						<ul class="select_first_ul">
+						    <a href="{if $html == 1}{$mininame}_list_{$cate_id}_{$sd}_0_0_{$zhuangtai}_{$money}_{$hr}.html{else}plugin.php?id=mini_pet&a={$cate_id}&b={$sd}&bc=0&sc=0&z={$zhuangtai}&c={$money}&hr={$hr}{/if}">
+							  <li {if $_GET['bc']<=0}  class="focusb" style="margin:0 0.5rem"{else}class="bottomline"style="margin:0 0.5rem"{/if}>
+								<p style="padding-left:12px;"> {lang mini_pet:menuquanbu}</p>
+							  </li>
+							</a>
+							<!--{loop $typeareadata $id $area}-->
+                            <!--{if $upidareadata[$area[id]]}-->
+							<li {if $_GET['bc']==$area['id']} class="focus" {/if}>
+								<p><!--{if $upidareadata[$area[id]]}-->{$area['subject']}<!--{else}--><a href="{if $html == 1}{$mininame}_list_{$cate_id}_{$sd}_{$area['id']}_0_{$zhuangtai}_{$money}_{$hr}.html{else}plugin.php?id=mini_pet&a={$cate_id}&b={$sd}&bc={$area['id']}&sc=0&z={$zhuangtai}&c=$money&hr={$hr}{/if}">{$area['subject']}</a><!--{/if}--></p>
+								<ul class="select_second_ul">
+								    <a href="{if $html == 1}{$mininame}_list_{$cate_id}_{$sd}_{$area['id']}_0_{$zhuangtai}_{$money}_{$hr}.html{else}plugin.php?id=mini_pet&a={$cate_id}&b={$sd}&bc={$area['id']}&sc=0&z={$zhuangtai}&c=$money&hr={$hr}{/if}">
+									  <li {if $_GET['bc']<=0} style="border-bottom:1px {$mobilemenubgcolor} solid !important;color:{$mobilemenubgcolor};"{else}style="border-bottom:1px #eaeaea solid"{/if}>{lang mini_pet:menuquanbu}</li>
+									</a>
+								    <!--{loop $upidareadata[$area[id]] $aupid}-->
+									<a href="{if $html == 1}{$mininame}_list_{$cate_id}_{$sd}_{$area['id']}_{$aupid['id']}_{$zhuangtai}_{$money}_{$hr}.html{else}plugin.php?id=mini_pet&a={$cate_id}&b={$sd}&bc={$area['id']}&sc={$aupid['id']}&z={$zhuangtai}&c=$money&hr={$hr}{/if}">
+									  <li  {if $_GET['sc']==$aupid['id']} style="border-bottom:1px {$mobilemenubgcolor} solid !important;color:{$mobilemenubgcolor};"{else}style="border-bottom:1px #eaeaea solid"{/if}>{$aupid[subject]}</li>
+									</a>
+									<!--{/loop}-->	
+								</ul>
+							</li>
+                            <!--{else}-->
+						    <a href="{if $html == 1}{$mininame}_list_{$cate_id}_{$sd}_{$area['id']}_0_{$zhuangtai}_{$money}_{$hr}.html{else}plugin.php?id=mini_pet&a={$cate_id}&b={$sd}&bc={$area['id']}&sc=0&z={$zhuangtai}&c=$money&hr={$hr}{/if}">
+						      <li class="bottomline" style="margin:0 0.5rem;{if $_GET['bc']==$area['id']}border-bottom:1px {$mobilemenubgcolor} solid !important;color:{$mobilemenubgcolor};{/if}" >
+								<p style="padding-left:12px;"> {$area['subject']}</p>
+							  </li>
+							</a>
+                            <!--{/if}-->
+							<!--{/loop}-->
+						</ul>
+					</div>
+				</div>	
+			</dt>
+			<dt>
+				<div class="selectlist">
+					<div class="select_textdiv">
+						<p class="s_text"> {if $_GET['hr']==1}{lang mini_pet:listzhaochongwu}{elseif $_GET['hr']==2}{lang mini_pet:listzhaozhuren}{else}{lang mini_pet:menuquanbu}{/if}</p><span class="down"><img src="source/plugin/mini_pet/images/down.png"></span>
+					</div>
+					<div class="select_textul">
+						<ul class="select_first_ul">
+						    <a href="{if $html == 1}{$mininame}_list_{$cate_id}_{$sd}_{$area_id}_{$s_area_id}_{$zhuangtai}_{$money}_0.html{else}plugin.php?id=mini_pet&a={$cate_id}&b={$sd}&bc={$area_id}&sc={$s_area_id}&z={$zhuangtai}&c={$money}&hr=0{/if}">
+							  <li {if $_GET['hr']!=1 && $_GET['hr']!=2} class="focus"{else}class="bottomline"{/if}>
+								<p class="paction">{lang mini_pet:menuquanbu}</p>
+							  </li>
+							</a>
+							<a href="{if $html == 1}{$mininame}_list_{$cate_id}_{$sd}_{$area_id}_{$s_area_id}_{$zhuangtai}_{$money}_1.html{else}plugin.php?id=mini_pet&a={$cate_id}&b={$sd}&bc=$area_id&sc=$s_area_id&z={$zhuangtai}&c=$money&hr=1{/if}">
+							  <li {if $_GET['hr']==1} class="focus"{else}class="bottomline"{/if}>
+								<p class="paction">{lang mini_pet:listzhaochongwu}</p>
+							  </li>
+							</a>
+							<a href="{if $html == 1}{$mininame}_list_{$cate_id}_{$sd}_{$area_id}_{$s_area_id}_{$zhuangtai}_{$money}_2.html{else}plugin.php?id=mini_pet&a={$cate_id}&b={$sd}&bc=$area_id&sc=$s_area_id&z={$zhuangtai}&c=$money&hr=2{/if}">
+							  <li {if $_GET['hr']==2} class="focus"{else}class="bottomline"{/if}>
+								<p class="paction">{lang mini_pet:listzhaozhuren}</p>
+							  </li>
+							</a>
+						</ul>
+					</div>
+				</div>	
+			</dt>
+			<dt>
+				<div class="selectlist">
+					<div class="select_textdiv">
+						<p class="s_text"> {if $_GET['c']<='0'}{lang mini_pet:menujiage}{else}$jglist[$_GET[c]]{/if}</p><span class="down"><img src="source/plugin/mini_pet/images/down.png"></span>
+					</div>
+					<div class="select_textul">
+						<ul class="select_first_ul">
+						    <a href="{if $html== 1}{$mininame}_list_{$cate_id}_{$sd}_{$area_id}_{$s_area_id}_{$zhuangtai}_0_{$hr}.html{else}plugin.php?id=mini_pet&a={$cate_id}&b={$sd}&bc={$area_id}&sc={$s_area_id}&z={$zhuangtai}&c=0&hr={$hr}{/if}">
+							  <li {if $_GET['c']<='0'} class="focus"{else}class="bottomline"{/if}>
+								<p class="paction">{lang mini_pet:menuquanbu}</p>
+							  </li>
+							</a>
+							<!--{loop $jglist $k $v}-->
+							<a href="{if $html== 1}{$mininame}_list_{$cate_id}_{$sd}_{$area_id}_{$s_area_id}_{$zhuangtai}_{$k}_{$hr}.html{else}plugin.php?id=mini_pet&a={$cate_id}&b={$sd}&bc={$area_id}&sc={$s_area_id}&z={$zhuangtai}&c={$k}&hr={$hr}{/if}">
+							  <li {if $_GET['c']==$k} class="focus"{else}class="bottomline"{/if}>
+								<p class="paction">{$v}</p>
+							  </li>
+						    </a>
+                            <!--{/loop}-->
+						</ul>
+					</div>
+				</div>	
+			</dt>
+		</dl>
+<div class="clear"></div>

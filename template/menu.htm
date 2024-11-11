@@ -1,0 +1,79 @@
+<div class="minitypeagory">
+    <div class="minitypeagory-nav">
+        <ul>
+			<li style="border-bottom:1px #CCC dashed;">
+				<strong>{lang mini_pet:menucate}</strong>
+				<div class="categ-items">
+				    <div class="desc-con">			
+						<a href="{if $html == 1}{$mininame}_list_0_0_{$area_id}_{$s_area_id}_{$zhuangtai}_{$money}_{$hr}.html{else}plugin.php?id=mini_pet&a=0&b=0&bc=$area_id&sc=$s_area_id&z={$zhuangtai}&c={$money}&hr={$hr}{/if}"{if $_GET['a']<=0} class="cur-on" {/if}> {lang mini_pet:menuquanbu}</a>
+					    <!--{loop $typecatedata $id $arrs}-->
+						<a href="{if $html == 1}{$mininame}_list_{$arrs['id']}_0_{$area_id}_{$s_area_id}_{$zhuangtai}_{$money}_{$hr}.html{else}plugin.php?id=mini_pet&a={$arrs['id']}&b=0&bc=$area_id&sc=$s_area_id&z={$zhuangtai}&c={$money}&hr={$hr}{/if}" {if $_GET['a']==$arrs['id']} class="cur-on" {/if}>{$arrs['subject']}</a>
+						<!--{/loop}-->
+					</div>
+				</div>
+					 <!--{if $subid}-->
+					<div class="desc-con desc-bg">
+                         <!--{loop $locals $d $locala}-->
+						 <a href="{if $html == 1}{$mininame}_list_{$locala['upid']}_{$locala['id']}_{$area_id}_{$s_area_id}_{$zhuangtai}_{$money}_{$hr}.html{else}plugin.php?id=mini_pet&a={$locala['upid']}&b={$locala['id']}&bc=$area_id&sc=$s_area_id&z={$zhuangtai}&c={$money}&hr={$hr}{/if}"{if $_GET['b']==$locala['id']} class="cur-on" {/if}>{$locala['subject']}</a>
+                         <!--{/loop}-->
+				    </div>
+			        <!--{/if}-->
+			</li>
+			<li style="border-bottom:1px #CCC dashed;">
+				<strong>{lang mini_pet:menuarea}</strong>
+				<div class="categ-items">
+				    <div class="desc-con">			
+						<a href="{if $html == 1}{$mininame}_list_{$cate_id}_{$sd}_0_0_{$zhuangtai}_{$money}_{$hr}.html{else}plugin.php?id=mini_pet&a={$cate_id}&b={$sd}&bc=0&sc=0&z={$zhuangtai}&c={$money}&hr={$hr}{/if}"{if $_GET['bc']<=0} class="cur-on" {/if}> {lang mini_pet:menuquanbu}</a>
+					    <!--{loop $typeareadata $id $area}-->
+						<a href="{if $html == 1}{$mininame}_list_{$cate_id}_{$sd}_{$area['id']}_0_{$zhuangtai}_{$money}_{$hr}.html{else}plugin.php?id=mini_pet&a={$cate_id}&b={$sd}&bc={$area['id']}&sc=0&z={$zhuangtai}&c=$money&hr={$hr}{/if}" {if $_GET['bc']==$area['id']} class="cur-on" {/if}>{$area['subject']}</a>
+						<!--{/loop}-->
+					</div>
+				</div>
+					 <!--{if $bc_subid}-->
+					<div class="desc-con desc-bg">
+                          <!--{loop $local_sc $d $localb}-->
+						 <a href="{if $html == 1}{$mininame}_list_{$cate_id}_{$sd}_{$localb['upid']}_{$localb['id']}_{$zhuangtai}_{$money}_{$hr}.html{else}plugin.php?id=mini_pet&a={$cate_id}&b={$sd}&bc={$localb['upid']}&sc={$localb['id']}&z={$zhuangtai}&c=$money&hr={$hr}{/if}"{if $_GET['sc']==$localb['id']} class="cur-on" {/if}>{$localb['subject']}</a>
+                         <!--{/loop}-->
+				    </div>
+			        <!--{/if}-->
+			</li>
+            <li>
+                <strong>
+                  {lang mini_pet:menuleixing}
+                </strong>
+                <div class="typeag-items">
+                    <div class="desc-con">
+                        <a href="{if $html == 1}{$mininame}_list_{$cate_id}_{$sd}_{$area_id}_{$s_area_id}_{$zhuangtai}_{$money}_0.html{else}plugin.php?id=mini_pet&a={$cate_id}&b={$sd}&bc={$area_id}&sc={$s_area_id}&z={$zhuangtai}&c={$money}&hr=0{/if}"{if $_GET['hr']==0} class="cur-on" {/if}>
+                            {lang mini_pet:menuquanbu}
+                        </a>
+                        <a href="{if $html == 1}
+                        {$mininame}_list_{$cate_id}_{$sd}_{$area_id}_{$s_area_id}_{$zhuangtai}_{$money}_1.html{else}
+                        plugin.php?id=mini_pet&a={$cate_id}&b={$sd}&bc=$area_id&sc=$s_area_id&z={$zhuangtai}&c=$money&hr=1{/if}"
+                       {if $_GET['hr']==1}class="cur-on"{/if}>
+                          {lang mini_pet:listzhaochongwu}
+                        </a>
+                        <a href="{if $html == 1}
+                        {$mininame}_list_{$cate_id}_{$sd}_{$area_id}_{$s_area_id}_{$zhuangtai}_{$money}_2.html{else}
+                        plugin.php?id=mini_pet&a={$cate_id}&b={$sd}&bc=$area_id&sc=$s_area_id&z={$zhuangtai}&c=$money&hr=2{/if}"
+                       {if $_GET['hr']==2}class="cur-on"{/if}>
+                          {lang mini_pet:listzhaozhuren}
+                        </a>
+                    </div>
+                </div>
+            </li>
+			<li style="border-bottom:none">
+				<strong>{lang mini_pet:menujiage}</strong>
+				<div class="categ-items">
+				    <div class="desc-con">			
+						<a href="{if $html== 1}{$mininame}_list_{$cate_id}_{$sd}_{$area_id}_{$s_area_id}_{$zhuangtai}_0_{$hr}.html{else}
+                        plugin.php?id=mini_pet&a={$cate_id}&b={$sd}&bc={$area_id}&sc={$s_area_id}&z={$zhuangtai}&c=0&hr={$hr}{/if}"
+						{if !$_GET['c']} class="cur-on" {/if}> {lang mini_pet:menuquanbu}</a>
+					    <!--{loop $jglist $k $v}-->
+						<a href="{if $html== 1}{$mininame}_list_{$cate_id}_{$sd}_{$area_id}_{$s_area_id}_{$zhuangtai}_{$k}_{$hr}.html{else}plugin.php?id=mini_pet&a={$cate_id}&b={$sd}&bc={$area_id}&sc={$s_area_id}&z={$zhuangtai}&c={$k}&hr={$hr}{/if}" {if $_GET['c']==$k} class="cur-on" {/if}>$v</a>
+						<!--{/loop}-->
+					</div>
+				</div>
+			</li>
+        </ul>
+    </div>
+</div>
